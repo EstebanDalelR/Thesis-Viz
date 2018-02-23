@@ -171,4 +171,43 @@ router.get('/concejales', (req, res) =>
   })
 );
 
+/* ---------------------------ALCALDIASLOCALES----------------------------- */
+
+/* Helper func to get the contents from "concejo"*/
+function getAlcaldiasLocales(callback) {
+  /* Authentication method */
+  doc.useServiceAccountAuth(creds, (err, resp) => {
+    if (err) throw err;
+
+    /* Now that we've auth'd, get all the cells */
+    doc.getCells(7, { "min-row": 1, "min-col": 1 }, (err2, cells) => {
+      if (err2) throw err2;
+
+      var alcaldiasLocales = [];
+      let cellValues = [];
+
+      /* Get all the values into cellValues */
+      cells.forEach(element => {
+        cellValues.unshift(element._value);
+      });
+      /* While cellValues != empty, push 4 elements (a row) as an object */
+      while (cellValues.length > 0) {
+        var alcaldiaLocal = [];
+        for (let col = 0; col < 2; col++) {
+          alcaldiaLocal.push(cellValues.pop());
+        }
+        alcaldiasLocales.push(alcaldiaLocal);
+      }
+      callback(alcaldiasLocales);
+    })
+  })
+}
+
+/* GET JSON from /concejales */
+router.get('/alcaldiaslocales', (req, res) =>
+  getAlcaldiasLocales((alcaldiasLocales) => {
+    res.json(alcaldiasLocales);
+  })
+);
+
 module.exports = router;
