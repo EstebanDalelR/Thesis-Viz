@@ -131,4 +131,44 @@ router.get('/hashtags', (req, res) =>
   })
 );
 
+
+/* ---------------------------CONCEJO----------------------------- */
+
+/* Helper func to get the contents from "concejo"*/
+function getConcejales(callback) {
+  /* Authentication method */
+  doc.useServiceAccountAuth(creds, (err, resp) => {
+    if (err) throw err;
+
+    /* Now that we've auth'd, get all the cells */
+    doc.getCells(6, { "min-row": 1, "min-col": 1 }, (err2, cells) => {
+      if (err2) throw err2;
+
+      var concejales = [];
+      let cellValues = [];
+
+      /* Get all the values into cellValues */
+      cells.forEach(element => {
+        cellValues.unshift(element._value);
+      });
+      /* While cellValues != empty, push 4 elements (a row) as an object */
+      while (cellValues.length > 0) {
+        var concejal = [];
+        for (let col = 0; col < 4; col++) {
+          concejal.push(cellValues.pop());
+        }
+        concejales.push(concejal);
+      }
+      callback(concejales);
+    })
+  })
+}
+
+/* GET JSON from /concejales */
+router.get('/concejales', (req, res) =>
+  getConcejales((concejales) => {
+    res.json(concejales);
+  })
+);
+
 module.exports = router;
