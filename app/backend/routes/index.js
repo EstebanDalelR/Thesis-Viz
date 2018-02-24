@@ -27,11 +27,12 @@ router.get('/', function (req, res) {
   ----------------------------------------------------------------*/
 
 function getTweetsfrom(handle, callback) {
-  client.get('statuses/user_timeline.json', { screen_name: handle, count:100 }, (error, tweets) => {
+  let extended = "extended";
+  client.get('statuses/user_timeline.json', { screen_name: handle, count:200, tweet_mode:extended }, (error, tweets) => {
     /* if (error) throw error; */
     let onlyText = [];
     tweets.forEach(element => {
-      onlyText.push(element.text);
+      onlyText.push(element.full_text);
     });
     callback(onlyText);
   })
@@ -42,8 +43,7 @@ router.get('/twitsfrom/:handle', (req, res) => {
   getTweetsfrom(handle, (callback) => {
     res.json(callback);
   })
-}
-);
+});
 /* --------------------------------------------------------------- 
   -----------------------SPREADSHEETS------------------------------
   ----------------------------------------------------------------*/
