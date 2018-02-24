@@ -1,24 +1,55 @@
-const express = require('express');
 const GoogleSpreadsheet = require('google-spreadsheet');
-const creds = require('./client_secret.json');
-
-var router = express.Router();
+const express = require('express');
+const Twitter = require('twitter');
+const googleCreds = require('./spreadsheets.json');
+const twitterCreds = require('./twitter.json');
+const app = express();
+const router = express.Router();
 
 /* Const of the spreadsheetID (found in the URL) */
 const spreadsheetID = '1pNFVnPjmPkgng2r6BAan85JPElH2TR1sZGZFZdS7rH0';
 var doc = new GoogleSpreadsheet(spreadsheetID);
+/* Const of twitter */
+var client = new Twitter({
+  consumer_key: twitterCreds.TWITTER_CONSUMER_KEY,
+  consumer_secret: twitterCreds.TWITTER_CONSUMER_SECRET,
+  access_token_key: twitterCreds.TWITTER_ACCESS_TOKEN_KEY,
+  access_token_secret: twitterCreds.TWITTER_ACCESS_TOKEN_SECRET
+});
 
 /* GET home page. */
 router.get('/', function (req, res) {
   res.render('index', { title: 'Express' });
 });
 
+/* --------------------------------------------------------------- 
+  -----------------------TWITTER----------------------------------
+  ----------------------------------------------------------------*/
+
+function getTweetsfrom(handle, callback) {
+  client.get('statuses/user_timeline.json', { screen_name: handle }, (error, tweets) => {
+    /* if (error) throw error; */
+    callback(tweets);
+  })
+}
+
+router.get('/twitsfrom/:handle', (req, res) => {
+  var handle = req.params.handle;
+  getTweetsfrom(handle, (callback) => {
+    res.json(callback);
+  })
+}
+);
+/* --------------------------------------------------------------- 
+  -----------------------SPREADSHEETS------------------------------
+  ----------------------------------------------------------------*/
+
 /* ---------------------------CAMARA----------------------------- */
 
 /* Helper func to get the contents from "camara"*/
 function getCamara(callback) {
   /* Authentication method */
-  doc.useServiceAccountAuth(creds, (err, resp) => {
+  doc.useServiceAccountAuth(googleCreds, (err, resp) => {
     if (err) throw err;
 
     /* Now that we've auth'd, get all the cells */
@@ -58,7 +89,7 @@ router.get('/camara', (req, res) =>
 /* Helper func to get the contents from "medios"*/
 function getMedios(callback) {
   /* Authentication method */
-  doc.useServiceAccountAuth(creds, (err, resp) => {
+  doc.useServiceAccountAuth(googleCreds, (err, resp) => {
     if (err) throw err;
 
     /* Now that we've auth'd, get all the cells */
@@ -97,7 +128,7 @@ router.get('/medios', (req, res) =>
 /* Helper func to get the contents from "hashtags"*/
 function getHashtags(callback) {
   /* Authentication method */
-  doc.useServiceAccountAuth(creds, (err, resp) => {
+  doc.useServiceAccountAuth(googleCreds, (err, resp) => {
     if (err) throw err;
 
     /* Now that we've auth'd, get all the cells */
@@ -137,7 +168,7 @@ router.get('/hashtags', (req, res) =>
 /* Helper func to get the contents from "concejo"*/
 function getConcejales(callback) {
   /* Authentication method */
-  doc.useServiceAccountAuth(creds, (err, resp) => {
+  doc.useServiceAccountAuth(googleCreds, (err, resp) => {
     if (err) throw err;
 
     /* Now that we've auth'd, get all the cells */
@@ -176,7 +207,7 @@ router.get('/concejales', (req, res) =>
 /* Helper func to get the contents from "concejo"*/
 function getAlcaldiasLocales(callback) {
   /* Authentication method */
-  doc.useServiceAccountAuth(creds, (err, resp) => {
+  doc.useServiceAccountAuth(googleCreds, (err, resp) => {
     if (err) throw err;
 
     /* Now that we've auth'd, get all the cells */
