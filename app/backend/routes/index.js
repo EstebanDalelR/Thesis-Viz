@@ -26,18 +26,25 @@ router.get('/', function (req, res) {
   -----------------------TWITTER----------------------------------
   ----------------------------------------------------------------*/
 
+/* Helper function to get the full text of the last 200 tweets from a person */
 function getTweetsfrom(handle, callback) {
-  let extended = "extended";
-  client.get('statuses/user_timeline.json', { screen_name: handle, count:200, tweet_mode:extended }, (error, tweets) => {
+  client.get('statuses/user_timeline.json', { screen_name: handle, count:200, tweet_mode:"extended" }, (error, tweets) => {
     /* if (error) throw error; */
-    let onlyText = [];
+    let fullText = [];
+    let createdAt = [];
+    let response =[];
     tweets.forEach(element => {
-      onlyText.push(element.full_text);
+      createdAt.push(element.created_at);
+      fullText.push(element.full_text);
     });
-    callback(onlyText);
+    while(fullText.length>0){
+      response.push([fullText.pop(), createdAt.pop()]);
+    }
+    callback(response);
   })
 }
 
+/* GET JSON from /twitsfrom/:handle where :handle is the @... in twitter */
 router.get('/twitsfrom/:handle', (req, res) => {
   var handle = req.params.handle;
   getTweetsfrom(handle, (callback) => {
