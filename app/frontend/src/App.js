@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import ObservaCamara from './ObservaCamara.js';
+import Concejal from './Directorio/Concejal.js';
 
 class App extends Component {
   state = {
@@ -28,6 +29,7 @@ class App extends Component {
     return (
       <div className="App">
         <ObservaCamara info={camara} />
+        <Concejal/>
       </div>
     );
   }
