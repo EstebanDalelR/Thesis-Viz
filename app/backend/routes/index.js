@@ -27,9 +27,13 @@ router.get('/', function (req, res) {
   ----------------------------------------------------------------*/
 
 function getTweetsfrom(handle, callback) {
-  client.get('statuses/user_timeline.json', { screen_name: handle }, (error, tweets) => {
+  client.get('statuses/user_timeline.json', { screen_name: handle, count:100 }, (error, tweets) => {
     /* if (error) throw error; */
-    callback(tweets);
+    let onlyText = [];
+    tweets.forEach(element => {
+      onlyText.push(element.text);
+    });
+    callback(onlyText);
   })
 }
 
