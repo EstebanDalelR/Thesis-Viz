@@ -1,1 +1,3 @@
 node_modules
+app/backend/routes/spreadsheets.json
+app/backend/routes/twitter.json
