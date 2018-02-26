@@ -183,7 +183,7 @@ function getConcejales(callback) {
     if (err) throw err;
 
     /* Now that we've auth'd, get all the cells */
-    doc.getCells(6, { "min-row": 1, "min-col": 1 }, (err2, cells) => {
+    doc.getCells(8, { "min-row": 1, "min-col": 1 }, (err2, cells) => {
       if (err2) throw err2;
 
       var concejales = [];
@@ -195,11 +195,20 @@ function getConcejales(callback) {
       });
       /* While cellValues != empty, push 4 elements (a row) as an object */
       while (cellValues.length > 0) {
-        var concejal = [];
-        for (let col = 0; col < 4; col++) {
+        var concejal= ('{'+
+          '"nombre":"' +cellValues.pop()+'",'+
+          '"pagina":"'+cellValues.pop()+'",'+
+          '"foto":"' +cellValues.pop()+'",'+
+          '"partido":"'    +cellValues.pop()+'",'+
+          '"comision":"'  +cellValues.pop()+'",'+
+          '"twitter":"'  +cellValues.pop()+'"'+
+          '}'
+        );
+        
+/*         for (let col = 0; col < 6; col++) {
           concejal.push(cellValues.pop());
-        }
-        concejales.push(concejal);
+        } */
+        concejales.push(JSON.parse(concejal));
       }
       callback(concejales);
     })
