@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import  RepCamara  from "./RepCamara.js";
-class ObservaCamara extends Component {
+import  TableRow  from "./TableRow.js";
+class Table extends Component {
 /*     constructor(props) {
         super(props);
     } */
-    renderRepCamara() {
+    renderTableRow() {
         return this.props.info.map(
             (t, i) => {
-                return <RepCamara repCamara={t} key={i} />;
+                return <TableRow tableRow={t} key={i} />;
             }
         );
     }
@@ -15,11 +15,11 @@ class ObservaCamara extends Component {
         return (
             <table >
                 <tbody>
-                    {this.renderRepCamara()}
+                    {this.renderTableRow()}
                 </tbody>
             </table>
         )
     }
 }
 
-export default ObservaCamara;
+export default Table;
