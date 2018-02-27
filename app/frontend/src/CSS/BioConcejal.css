@@ -17,6 +17,10 @@
     grid-row-start: 1; 
     grid-row-end: 1; 
 }
+.logoPartido{
+    max-width: 120px;
+    max-height: 100px;
+}
 .periodosAnteriores{
     grid-column-start: 2; 
     grid-column-end: 6; 
