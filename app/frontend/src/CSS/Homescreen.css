@@ -1,0 +1,46 @@
+.Homescreen{
+    display: grid;
+    grid-template-columns: repeat(8, minmax(auto,auto));
+    grid-template-rows: repeat(4, minmax(auto,auto));  
+    grid-column-gap: 1em;
+    grid-row-gap: 1em;
+}
+.Header{
+    float: left;
+    grid-column-start: 1; 
+    grid-column-end: 9; 
+    grid-row-start: 1; 
+    grid-row-end: 3; 
+    align-content: center;
+    margin: auto;
+    box-shadow: 0 8px 6px 0 rgba(0,0,0,0.2), 0 2px 10px 0 rgba(0,0,0,0.29);
+}
+.mainButton{
+    background-color: white;
+    color: #b51ec9;
+    font-size: 110%;
+    border-top: whitesmoke;
+    border-bottom: whitesmoke;
+    border-right: whitesmoke;
+    margin: 0.5em;
+    padding: 0.5em;
+    transition-duration: 0.4s;
+}
+.mainButton:hover{
+    color: white;
+    background-color: #b51ec9; 
+}
+.homeButton{
+    background-color: white;
+    color: slateblue;
+    border: 1px solid #b51ec9;
+    border-radius: 12px;
+    padding: 3px;
+    margin: 0.5em;
+    transition-duration: 0.4s;
+}
+
+.homeButton:hover {
+    background-color: #b51ec9; 
+    color: white;
+}
