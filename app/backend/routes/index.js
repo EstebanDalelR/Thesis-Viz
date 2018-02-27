@@ -1,3 +1,4 @@
+'use strict'
 const GoogleSpreadsheet = require('google-spreadsheet');
 const express = require('express');
 const Twitter = require('twitter');
@@ -28,20 +29,22 @@ router.get('/', function (req, res) {
 
 /* Helper function to get the full text of the last 200 tweets from a person */
 function getTweetsfrom(handle, callback) {
-  client.get('statuses/user_timeline.json', { screen_name: handle, count:200, tweet_mode:"extended" }, (error, tweets) => {
-    /* if (error) throw error; */
-    let fullText = [];
-    let createdAt = [];
-    let response =[];
-    tweets.forEach(element => {
-      createdAt.push(element.created_at);
-      fullText.push(element.full_text);
-    });
-    while(fullText.length>0){
-      response.push([fullText.pop(), createdAt.pop()]);
-    }
-    callback(response);
-  })
+  client.get('statuses/user_timeline.json',
+    { screen_name: handle, count: 200, tweet_mode: "extended" },
+    (error, tweets) => {
+      /* if (error) throw error; */
+      let fullText = [];
+      let createdAt = [];
+      let response = [];
+      tweets.forEach(element => {
+        createdAt.push(element.created_at);
+        fullText.push(element.full_text);
+      });
+      while (fullText.length > 0) {
+        response.push([fullText.pop(), createdAt.pop()]);
+      }
+      callback(response);
+    })
 }
 
 /* GET JSON from /twitsfrom/:handle where :handle is the @... in twitter */
@@ -51,6 +54,37 @@ router.get('/twitsfrom/:handle', (req, res) => {
     res.json(callback);
   })
 });
+
+/* Helper function to get the full text of the last 'amount' tweets from a person */
+function getAmountTweetsfrom(handle, amount, callback) {
+  client.get('statuses/user_timeline.json',
+    { screen_name: handle, count: amount, tweet_mode: "extended" },
+    (error, tweets) => {
+      /* if (error) throw error; */
+      let fullText = [];
+      let createdAt = [];
+      let response = [];
+      tweets.forEach(element => {
+        createdAt.push(element.created_at);
+        fullText.push(element.full_text);
+      });
+      while (fullText.length > 0) {
+        response.push([fullText.pop(), createdAt.pop()]);
+      }
+      callback(response);
+    })
+}
+
+/* GET JSON from /twitsfrom/:handle where :handle is the @... in twitter */
+router.get('/twitsfromamount/:handle/:amount', (req, res) => {
+  var handle = req.params.handle;
+  var amount = req.params.amount;
+  console.log(handle,amount);
+  getAmountTweetsfrom(handle, amount, (callback) => {
+    res.json(callback);
+  })
+});
+
 /* --------------------------------------------------------------- 
   -----------------------SPREADSHEETS------------------------------
   ----------------------------------------------------------------*/
@@ -195,19 +229,16 @@ function getConcejales(callback) {
       });
       /* While cellValues != empty, push 4 elements (a row) as an object */
       while (cellValues.length > 0) {
-        var concejal= ('{'+
-          '"nombre":"' +cellValues.pop()+'",'+
-          '"pagina":"'+cellValues.pop()+'",'+
-          '"foto":"' +cellValues.pop()+'",'+
-          '"partido":"'    +cellValues.pop()+'",'+
-          '"comision":"'  +cellValues.pop()+'",'+
-          '"twitter":"'  +cellValues.pop()+'"'+
+        var concejal = ('{' +
+          '"nombre":"' + cellValues.pop() + '",' +
+          '"pagina":"' + cellValues.pop() + '",' +
+          '"foto":"' + cellValues.pop() + '",' +
+          '"partido":"' + cellValues.pop() + '",' +
+          '"comision":"' + cellValues.pop() + '",' +
+          '"twitter":"' + cellValues.pop() + '",' +
+          '"fotoPartido":"' + cellValues.pop() + '"' +
           '}'
         );
-        
-/*         for (let col = 0; col < 6; col++) {
-          concejal.push(cellValues.pop());
-        } */
         concejales.push(JSON.parse(concejal));
       }
       callback(concejales);
