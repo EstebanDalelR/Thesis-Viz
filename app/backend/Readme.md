@@ -1,6 +1,7 @@
 # Backend
 ## Requirements
-This app requires 2 files: **spreadsheets.json** and **twitter.json**, both in the `/routes` folder. These can be obtained in the [Google Developer Console](https://console.developers.google.com/) and the [Tweeter Developer Page](https://developer.twitter.com/).
+This app requires 2 files: **spreadsheets.json** and **twitter.json**, both in the `/routes` folder. These can be obtained in the [Google Developer Console](https://console.developers.google.com/) and the [Tweeter Developer Page](https://developer.twitter.com/).  
+The spreadsheetID is just the big string that shows in the URL after `https://docs.google.com/spreadsheets/d/` and before `/edit#` when editing the target spreadsheet.
 ### `spreadsheets.json`
 `{
   "type": "service_account",   
@@ -24,10 +25,28 @@ This app requires 2 files: **spreadsheets.json** and **twitter.json**, both in t
 
 ## Routes
 
-#### /twitsfromamount/:handle/:amount
+#### /
+Original Express response HTML. To be sure that the server is working.
+#### /twitsfromamount/handle/amount
 Returns a JSON with the last _amount_ twits from _handle_.  
+In order: twit, date.  
 Known bug: RTs come in just 140 characters, including "RT @_handle_:".
-
-#### /twitsfrom/:handle/
+#### /twitsfrom/handle
 Returns a JSON with the last 200 twits from _handle_.  
+In order: twit, date.  
 Known bug: RTs come in just 140 characters, including "RT @_handle_:".
+#### /camara
+Returns a JSON with the current Camara from the spreadsheet.  
+In order: Political Party, Comission (chamber), Name, twitter handle.
+#### /medios
+Returns a JSON with the selected top News Outlets from the spreadsheet.  
+In order: Name, twitter handle.
+#### /hashtags
+Returns a JSON with the selected top hashtags from the spreadsheet.  
+In order: hashtag.
+#### /concejales
+Returns a JSON with the Concejales from the spreadsheet.  
+In order: Name, BCV Page, BCV Picture, Political Party, Comission (chamber), twitter handle, Political Party Picture.
+#### /alcaldiaslocales
+Returns a JSON with the Name of the County and twitter handle from the spreadsheet.  
+In order: Name, twitter handle.
