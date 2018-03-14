@@ -17,9 +17,9 @@ The spreadsheetID is just the big string that shows in the URL after `https://do
 }` 
 ### `twitter.json`
 `{
-    'TWITTER_CONSUMER_KEY':'',
-    'TWITTER_CONSUMER_SECRET':'',
-    'TWITTER_ACCESS_TOKEN_KEY':'',
+    'TWITTER_CONSUMER_KEY':'', 
+    'TWITTER_CONSUMER_SECRET':'', 
+    'TWITTER_ACCESS_TOKEN_KEY':'', 
     'TWITTER_ACCESS_TOKEN_SECRET':''
 }`
 
@@ -34,11 +34,11 @@ Returns a JSON with the last 200 twits from _handle_.
 `{twit, date}`  
 #### /twitsfromamount/handle/amount
 Returns a JSON with the last _amount_ twits from _handle_.  
-`{twit,date}`  
+`{twit, date}`  
 Known bug: RTs come in just 140 characters, including 'RT @_handle_:'.
 #### /twitsfromhashtag/hashtag
 Returns a JSON with the last 200 twits from _hashtag_.  
-`{twit, date}`  
+`{handle, twit, date}`  
 ### Google Sheet
 #### /camara
 Returns a JSON with the current Camara from the spreadsheet.  
