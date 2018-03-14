@@ -105,13 +105,15 @@ function getTweetsfromHashtag(hashtag, callback) {
       };
       let fullText = [];
       let createdAt = [];
+      let screenName = [];
       let response = [];
       tweets.statuses.forEach(element => {
         createdAt.push(element.created_at);
         fullText.push(element.text);
+        screenName.push(element.user.screen_name);
       });
       while (fullText.length > 0) {
-        response.push([fullText.pop(), createdAt.pop()]);
+        response.push([screenName.pop(), fullText.pop(), createdAt.pop()]);
       }
       callback(response);
     })
