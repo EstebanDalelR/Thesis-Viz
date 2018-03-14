@@ -1,11 +1,13 @@
 'use strict'
-const GoogleSpreadsheet = require('google-spreadsheet');
 const express = require('express');
 const Twitter = require('twitter');
+const bodyParser = require('body-parser');
 const googleCreds = require('./spreadsheets.json');
 const twitterCreds = require('./twitter.json');
+const GoogleSpreadsheet = require('google-spreadsheet');
 const app = express();
 const router = express.Router();
+app.use(bodyParser.urlencoded({ extended: true }));
 
 /* Const of the spreadsheetID (found in the URL) */
 const spreadsheetID = '1pNFVnPjmPkgng2r6BAan85JPElH2TR1sZGZFZdS7rH0';
@@ -30,7 +32,7 @@ router.get('/', function (req, res) {
 /* Helper function to get the full text of the last 200 tweets from a person */
 function getTweetsfrom(handle, callback) {
   client.get('statuses/user_timeline.json',
-    { screen_name: handle, count: 200, tweet_mode: "extended" },
+    { screen_name: handle, count: 200, tweet_mode: "extended"},
     (error, tweets) => {
       /* if (error) throw error; */
       let fullText = [];
@@ -58,18 +60,25 @@ router.get('/twitsfrom/:handle', (req, res) => {
 /* Helper function to get the full text of the last 'amount' tweets from a person */
 function getAmountTweetsfrom(handle, amount, callback) {
   client.get('statuses/user_timeline.json',
-    { screen_name: handle, count: amount, tweet_mode: "extended" },
+    { screen_name: handle, count: amount, tweet_mode: "extended"},
     (error, tweets) => {
-      /* if (error) throw error; */
+      if (error) {
+        console.log(error);
+        throw error;
+      };
       let fullText = [];
       let createdAt = [];
       let response = [];
-      tweets.forEach(element => {
-        createdAt.push(element.created_at);
-        fullText.push(element.full_text);
-      });
-      while (fullText.length > 0) {
-        response.push([fullText.pop(), createdAt.pop()]);
+      if(tweets !==undefined){
+
+        tweets.forEach(element => {
+          createdAt.push(element.created_at);
+          fullText.push(element.full_text);
+        });
+        while (fullText.length > 0) {
+          response.push([fullText.pop(), createdAt.pop()]);
+        }
+        
       }
       callback(response);
     })
@@ -85,6 +94,38 @@ router.get('/twitsfromamount/:handle/:amount', (req, res) => {
   })
 });
 
+/* Helper function to get the full text of the last 200 tweets from a hashtag */
+function getTweetsfromHashtag(hashtag, callback) {
+  client.get('search/tweets.json',
+    { q: hashtag, count: 200, include_entities:true},
+    (error, tweets) => {
+      if (error) {
+        console.log(error);
+        throw error;
+      };
+      let fullText = [];
+      let createdAt = [];
+      let screenName = [];
+      let response = [];
+      tweets.statuses.forEach(element => {
+        createdAt.push(element.created_at);
+        fullText.push(element.text);
+        screenName.push(element.user.screen_name);
+      });
+      while (fullText.length > 0) {
+        response.push([screenName.pop(), fullText.pop(), createdAt.pop()]);
+      }
+      callback(response);
+    })
+}
+
+/* GET JSON from /twitsfrom/:hashtag where :hashtag is the #... in twitter */
+router.get('/twitsfromhashtag/:hashtag', (req, res) => {
+  var hashtag = req.params.hashtag;
+  getTweetsfromHashtag(hashtag, (callback) => {
+    res.json(callback);
+  })
+});
 /* --------------------------------------------------------------- 
   -----------------------SPREADSHEETS------------------------------
   ----------------------------------------------------------------*/
