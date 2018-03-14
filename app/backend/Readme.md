@@ -27,12 +27,15 @@ The spreadsheetID is just the big string that shows in the URL after `https://do
 
 #### / 
 Original Express response HTML. To be sure that the server is working.
+#### /twitsfrom/handle
+Returns a JSON with the last 200 twits from _handle_.  
+`{twit, date}`  
 #### /twitsfromamount/handle/amount
 Returns a JSON with the last _amount_ twits from _handle_.  
 `{twit,date}`  
 Known bug: RTs come in just 140 characters, including 'RT @_handle_:'.
-#### /twitsfrom/handle
-Returns a JSON with the last 200 twits from _handle_.  
+#### /twitsfromhashtag/hasshtag
+Returns a JSON with the last 200 twits from _hashtag_.  
 `{twit, date}`  
 Known bug: RTs come in just 140 characters, including 'RT @_handle_:'.
 #### /camara
