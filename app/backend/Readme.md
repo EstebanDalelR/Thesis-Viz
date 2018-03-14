@@ -25,8 +25,10 @@ The spreadsheetID is just the big string that shows in the URL after `https://do
 
 ## Routes
 
+### Homescreen
 #### / 
 Original Express response HTML. To be sure that the server is working.
+### Twitter
 #### /twitsfrom/handle
 Returns a JSON with the last 200 twits from _handle_.  
 `{twit, date}`  
@@ -34,10 +36,10 @@ Returns a JSON with the last 200 twits from _handle_.
 Returns a JSON with the last _amount_ twits from _handle_.  
 `{twit,date}`  
 Known bug: RTs come in just 140 characters, including 'RT @_handle_:'.
-#### /twitsfromhashtag/hasshtag
+#### /twitsfromhashtag/hashtag
 Returns a JSON with the last 200 twits from _hashtag_.  
 `{twit, date}`  
-Known bug: RTs come in just 140 characters, including 'RT @_handle_:'.
+### Google Sheet
 #### /camara
 Returns a JSON with the current Camara from the spreadsheet.  
 `{Political Party, Comission (chamber), Name, twitter handle}`  
