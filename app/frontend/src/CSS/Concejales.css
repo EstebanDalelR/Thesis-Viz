@@ -1,0 +1,25 @@
+.directorioConcejal{
+    border:  2px solid rgba(112, 0, 139, 0.667);
+    display: grid;
+}
+.fotoConcejal {
+    height: 8em;
+    grid-row-start: 1;
+    grid-row-end: 3;
+}
+.fotoPartido{
+    height: 7em;
+    grid-row-start: 2;
+    grid-row-end: 3;
+}
+.directorioConcejal h2{
+    grid-row-start: 1;
+    grid-row-end: 1;
+}
+.directorioConcejal h5{
+    grid-row-start: 2;
+}
+.directorioConcejal p{
+    grid-row-start: 1;
+    grid-column-start: 3;
+}
