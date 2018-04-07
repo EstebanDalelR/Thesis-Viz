@@ -19,14 +19,11 @@ class Concejal extends Component {
                 <div className="periodosAnteriores">
                     <p>Comision {this.state.concejal.comision}</p>
                 </div>
-                <div className="mapa">
-                    <img alt="mapa de Bogota" src='http://cdn.radiosantafe.com//wp-content/uploads/2016/01/BOGOTA-MAPA.jpg' />
-                </div>
                 <div className="otrosDeBancada">
-                    <img 
-                    className="logoPartido"
-                    src={this.state.concejal.fotoPartido} 
-                    alt={"logo de " + this.state.concejal.partido} />
+                    <img
+                        className="logoPartido"
+                        src={this.state.concejal.fotoPartido}
+                        alt={"logo de " + this.state.concejal.partido} />
                     <h3>Otros de {this.state.concejal.partido}</h3>
 
                 </div>
@@ -35,6 +32,11 @@ class Concejal extends Component {
                 </div>
                 <div className="twitterFeed">
                     <p>Tweets de @{this.state.concejal.twitter}</p>
+                </div>
+                <div className="votaciones">
+                    <h3>Votaciones</h3>
+                    <hr />
+                    <img alt="mapa de Bogota" src='http://cdn.radiosantafe.com//wp-content/uploads/2016/01/BOGOTA-MAPA.jpg' />
                 </div>
                 <div className="hojaDeVida">
                     <h3>Hoja de Vida</h3>
