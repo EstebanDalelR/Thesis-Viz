@@ -34,10 +34,16 @@
     grid-row-start: 1; 
     grid-row-end: 2; 
 }
+.otrosDeComision{
+    grid-column-start: 7; 
+    grid-column-end: 9; 
+    grid-row-start: 2; 
+    grid-row-end: 3; 
+}
 .mapa{
     grid-column-start: 1; 
     grid-column-end: 6; 
-    grid-row-start: 3; 
+    grid-row-start: 2; 
     grid-row-end: 4; 
 }
 .tablaPeriodos{
@@ -57,4 +63,28 @@
     grid-column-end: 9; 
     grid-row-start: 4; 
     grid-row-end: 5; 
+}
+.proyectosAcuerdo{
+    grid-column-start: 1; 
+    grid-column-end: 6; 
+    grid-row-start: 5; 
+    grid-row-end: 6; 
+}
+.mesasTrabajo{
+    grid-column-start: 1; 
+    grid-column-end: 6; 
+    grid-row-start: 6; 
+    grid-row-end: 7; 
+}
+.controlPolitico{
+    grid-column-start: 1; 
+    grid-column-end: 6; 
+    grid-row-start: 7; 
+    grid-row-end: 8; 
+}
+.asistencia{
+    grid-column-start: 1; 
+    grid-column-end: 6; 
+    grid-row-start: 10; 
+    grid-row-end: 9; 
 }
