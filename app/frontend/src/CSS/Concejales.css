@@ -1,0 +1,71 @@
+.directorioConcejal{
+    border:  2px solid rgba(54, 54, 54, 0.667);
+    display: grid;
+    border-radius: 7px;
+    margin: 2px;
+    padding: 2px;
+    grid-auto-columns: minmax(10px, auto);
+}
+.fotoConcejal {
+    height: 6em;
+}
+.bloqueFoto{
+    grid-row-start: 1;
+    grid-row-end: 3;
+    grid-column-start: 2;
+}
+.bloqueNombre{
+    grid-row-start: 1;
+    grid-row-end: 1;
+    grid-column-start: 3;
+}
+.bloqueComision{
+    grid-row-start: 1;
+    grid-column-start: 4;
+    width: 85%;        
+}
+.bloquePartido{
+    grid-column-start: 1;
+}
+.fotoPartido{
+    height: 3em;
+}
+.directorioConcejal p{
+    width: 85%;
+}
+.pantallaDirectorio{
+    border: 2px solid black;
+    display: grid;
+}
+.sorting{
+    border: 2px solid black;
+    float: right;
+    grid-column-start: 8;
+    grid-row-start: 1;
+    text-align: initial;
+}
+.listaConcejales{
+    float: left;
+    grid-column-start: 1;
+    grid-column-end: 7;
+    grid-row-start: 2;
+}
+.tituloBusqueda{
+    display: grid;
+    grid-column-start: 1;
+    grid-row-start: 1;
+}
+.titulo {
+    text-align: left;
+    grid-row-start: 1;
+    grid-column-start: 1;
+    grid-column-end: 5
+}
+.barraBusqueda{
+    grid-row-start: 2;
+    grid-column-start: 2;
+    grid-column-end: 3;
+}
+button{
+    display: block;
+}
