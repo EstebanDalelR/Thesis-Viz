@@ -55,3 +55,6 @@ Returns a JSON with the Concejales from the spreadsheet.
 #### /alcaldiaslocales
 Returns a JSON with the Name of the County and twitter handle from the spreadsheet.  
 `{Name, twitter handle}`  
+#### /secretarios
+Returns a JSON with the Name of the Secretary, the secretariat they belong to, picture link and twitter handle from the spreadsheet.  
+`{Name, secretariat, picture link, twitter handle}`  

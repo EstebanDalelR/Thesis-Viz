@@ -293,6 +293,47 @@ router.get('/concejales', (req, res) =>
     res.json(concejales);
   })
 );
+/* ---------------------------SECRETARIOS----------------------------- */
+
+/* Helper func to get the contents from "Secretarios"*/
+function getSecretarios(callback) {
+  /* Authentication method */
+  doc.useServiceAccountAuth(googleCreds, (err, resp) => {
+    if (err) throw err;
+
+    /* Now that we've auth'd, get all the cells */
+    doc.getCells(3, { "min-row": 1, "min-col": 1 }, (err2, cells) => {
+      if (err2) throw err2;
+
+      var secretarios = [];
+      let cellValues = [];
+
+      /* Get all the values into cellValues */
+      cells.forEach(element => {
+        cellValues.unshift(element._value);
+      });
+      /* While cellValues != empty, push 4 elements (a row) as an object */
+      while (cellValues.length > 0) {
+        var secretario = ('{' +
+          '"nombre":"' + cellValues.pop() + '",' +
+          '"secretaria":"' + cellValues.pop() + '",' +
+          '"foto":"' + cellValues.pop() + '",' +
+          '"twitter":"' + cellValues.pop() + '"' +
+          '}'
+        );
+        secretarios.push(JSON.parse(secretario));
+      }
+      callback(secretarios);
+    })
+  })
+}
+
+/* GET JSON from /secretarios */
+router.get('/secretarios', (req, res) =>
+  getSecretarios((secretarios) => {
+    res.json(secretarios);
+  })
+);
 
 /* ---------------------------ALCALDIASLOCALES----------------------------- */
 
