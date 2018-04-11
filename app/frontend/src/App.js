@@ -1,13 +1,19 @@
 import React, { Component } from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router'
+
 import './CSS/App.css';
-import Homescreen from './UI/Homescreen.js'
-import Table from './UI/Table.js';
+import Navbar from './Directorio/Navbar.js';
 import Concejal from './Directorio/Concejal.js';
+import Concejales from './Directorio/Concejales.js';
+import Secretarios from './Directorio/Secretarios';
+import ProyectoAcuerdo from './Directorio/ProyectoAcuerdo';
+import ProyectosAcuerdo from './Directorio/ProyectosAcuerdo';
 
 class App extends Component {
   state = {
     camara: [],
-    concejales: []
+    concejales: [],
+    secretarios: [],
   }
 
   componentWillMount() {
@@ -41,6 +47,21 @@ class App extends Component {
         });
       });
 
+    fetch('http://localhost:3000/secretarios',
+      {
+        method: 'GET',
+        headers: { accept: 'application/json' }
+      })
+      .then((res) => {
+        if (res.ok)
+          return res.json();
+      })
+      .then((secretarios) => {
+        this.setState({
+          secretarios: secretarios
+        });
+      });
+
   }
 
   mapChildren() {
@@ -56,16 +77,28 @@ class App extends Component {
     if (concejales.length > 1) {
       return (
         <div className="App">
-          {/* <Table info={concejales} /> */}
-          {/* {this.mapChildren()} */}
-          {/* <Concejal info={concejales} /> */}
+          <Navbar />
+          <Switch>
+            <Route
+              exact
+              path="/concejales"
+              render={props => (<Concejales concejales={this.state.concejales} />)}
+            />
+            <Route
+              path="/concejales/:number"
+              render={props => (<Concejal info={concejales[props.match.params.number]} />)}
+            />
+            <Route path="/proyectosAcuerdo" render={props => (<ProyectosAcuerdo proyectosAcuerdo={[]} />)} />
+            <Route path="/secretarios" render={props => (<Secretarios secretarios={this.state.secretarios} />)} />
+          </Switch>
+          {/*{<ProyectoAcuerdo concejal={concejales[4]}/>} */}
         </div>
       );
     }
     else {
       return (
         <div className="App">
-          <Homescreen />
+
         </div>
       );
     }

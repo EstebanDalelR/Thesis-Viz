@@ -8,6 +8,7 @@ class Secretarios extends Component {
             secretarios: this.props.secretarios,
             selected: "nombre",
          }
+         document.title="Secretarios";
     }
     losProps = this.props.secretarios;
 

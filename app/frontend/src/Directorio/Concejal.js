@@ -6,6 +6,7 @@ class Concejal extends Component {
         this.state = {
             "concejal": this.props.info,
         }
+        document.title=this.props.nombre;
     }
 
     render() {
