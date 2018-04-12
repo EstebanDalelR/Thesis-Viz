@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Link, Route} from 'react-router-dom';
+
 import "../CSS/Concejales.css"
 class Concejales extends Component {
     constructor(props) {
@@ -9,13 +11,14 @@ class Concejales extends Component {
         }
         this.sortBy = this.sortBy.bind(this);
         this.search = this.search.bind(this);
+        document.title="Concejales";
     }
     losProps = this.props.concejales;
 
-    search(input){
+    search(input) {
         var currentConcejales = this.state.concejales;
         var found = currentConcejales.filter(
-            buscado=>{
+            buscado => {
                 return buscado.nombre.toLowerCase().includes(input.toLowerCase());
             }
         )
@@ -24,7 +27,7 @@ class Concejales extends Component {
                 concejales: found,
             }
         )
-        if(input === "") this.setState({concejales: this.losProps,})
+        if (input === "") this.setState({ concejales: this.losProps, })
     }
 
     sortBy(sorting) {
@@ -66,27 +69,29 @@ class Concejales extends Component {
     renderConcejales() {
         return this.state.concejales.map((concejal, index) => {
             return (
-                <div className="directorioConcejal">
-                    <div className="bloqueFoto">
-                        <img
-                            src={concejal.foto}
-                            alt={"foto de " + concejal.nombre}
-                            className="fotoConcejal"></img>
+                <Link to={"/concejales/" + index}>
+                    <div className="directorioConcejal">
+                        <div className="bloqueFoto">
+                            <img
+                                src={concejal.foto}
+                                alt={"foto de " + concejal.nombre}
+                                className="fotoConcejal"></img>
+                        </div>
+                        <div className="bloqueNombre">
+                            <h2> {concejal.nombre}</h2>
+                        </div>
+                        <div className="bloqueComision">
+                            <h5>Comisión {concejal.comision}</h5>
+                        </div>
+                        <div className="bloquePartido">
+                            <img
+                                src={concejal.fotoPartido}
+                                alt={"imagen de " + concejal.partido}
+                                className="fotoPartido"></img>
+                            <p>{concejal.partido}</p>
+                        </div>
                     </div>
-                    <div className="bloqueNombre">
-                        <h2> {concejal.nombre}</h2>
-                    </div>
-                    <div className="bloqueComision">
-                        <h5>Comisión {concejal.comision}</h5>
-                    </div>
-                    <div className="bloquePartido">
-                        <img
-                            src={concejal.fotoPartido}
-                            alt={"imagen de " + concejal.partido}
-                            className="fotoPartido"></img>
-                        <p>{concejal.partido}</p>
-                    </div>
-                </div>
+                </Link>
             )
         })
     }
