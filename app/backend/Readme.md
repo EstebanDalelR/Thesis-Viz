@@ -51,7 +51,7 @@ Returns a JSON with the selected top hashtags from the spreadsheet.
 `{hashtag}`  
 #### /concejales
 Returns a JSON with the Concejales from the spreadsheet.  
-`{Name, BCV Page, BCV Picture, Political Party, Comission (chamber), twitter handle, Political Party Picture}`  
+`{Name, BCV Page, BCV Picture, Political Party, Comission (chamber), twitter handle, Political Party Picture, profile}`  
 #### /alcaldiaslocales
 Returns a JSON with the Name of the County and twitter handle from the spreadsheet.  
 `{Name, twitter handle}`  
