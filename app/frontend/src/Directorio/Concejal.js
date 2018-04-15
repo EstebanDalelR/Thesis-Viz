@@ -6,10 +6,10 @@ class Concejal extends Component {
         this.state = {
             "concejal": this.props.info,
         }
-        document.title=this.props.nombre;
     }
-
+    
     render() {
+        document.title=this.state.concejal.nombre;
         return (
             <div className="bioConcejal">
                 <img
@@ -32,7 +32,7 @@ class Concejal extends Component {
                     <h3>Otros de {this.state.concejal.comision}</h3>
                 </div>
                 <div className="twitterFeed">
-                    <p>Tweets de @{this.state.concejal.twitter}</p>
+                    <p>Tweets de {this.state.concejal.twitter}</p>
                 </div>
                 <div className="votaciones">
                     <h3>Votaciones</h3>
@@ -40,8 +40,10 @@ class Concejal extends Component {
                     <img alt="mapa de Bogota" src='http://cdn.radiosantafe.com//wp-content/uploads/2016/01/BOGOTA-MAPA.jpg' />
                 </div>
                 <div className="hojaDeVida">
-                    <h3>Hoja de Vida</h3>
+                    <h3>Perfil</h3>
                     <hr />
+                    {this.state.concejal.perfil}
+                    <h6>Tomado de Concejo Como Vamos</h6>
                 </div>
                 <div className="proyectosAcuerdo">
                     <h3>Proyectos de Acuerdo</h3>

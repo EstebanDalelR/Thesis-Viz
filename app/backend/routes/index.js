@@ -208,6 +208,47 @@ router.get('/medios', (req, res) =>
     res.json(medios);
   })
 );
+/* ---------------------------SECRETARIOS----------------------------- */
+
+/* Helper func to get the contents from "Secretarios"*/
+function getSecretarios(callback) {
+  /* Authentication method */
+  doc.useServiceAccountAuth(googleCreds, (err, resp) => {
+    if (err) throw err;
+
+    /* Now that we've auth'd, get all the cells */
+    doc.getCells(3, { "min-row": 1, "min-col": 1 }, (err2, cells) => {
+      if (err2) throw err2;
+
+      var secretarios = [];
+      let cellValues = [];
+
+      /* Get all the values into cellValues */
+      cells.forEach(element => {
+        cellValues.unshift(element._value);
+      });
+      /* While cellValues != empty, push 4 elements (a row) as an object */
+      while (cellValues.length > 0) {
+        var secretario = ('{' +
+          '"nombre":"' + cellValues.pop() + '",' +
+          '"secretaria":"' + cellValues.pop() + '",' +
+          '"foto":"' + cellValues.pop() + '",' +
+          '"twitter":"' + cellValues.pop() + '"' +
+          '}'
+        );
+        secretarios.push(JSON.parse(secretario));
+      }
+      callback(secretarios);
+    })
+  })
+}
+
+/* GET JSON from /secretarios */
+router.get('/secretarios', (req, res) =>
+  getSecretarios((secretarios) => {
+    res.json(secretarios);
+  })
+);
 
 /* ---------------------------HASHTAGS----------------------------- */
 
@@ -258,7 +299,7 @@ function getConcejales(callback) {
     if (err) throw err;
 
     /* Now that we've auth'd, get all the cells */
-    doc.getCells(8, { "min-row": 1, "min-col": 1 }, (err2, cells) => {
+    doc.getCells(6, { "min-row": 1, "min-col": 1 }, (err2, cells) => {
       if (err2) throw err2;
 
       var concejales = [];
@@ -271,13 +312,14 @@ function getConcejales(callback) {
       /* While cellValues != empty, push 4 elements (a row) as an object */
       while (cellValues.length > 0) {
         var concejal = ('{' +
-          '"nombre":"' + cellValues.pop() + '",' +
-          '"pagina":"' + cellValues.pop() + '",' +
-          '"foto":"' + cellValues.pop() + '",' +
-          '"partido":"' + cellValues.pop() + '",' +
-          '"comision":"' + cellValues.pop() + '",' +
-          '"twitter":"' + cellValues.pop() + '",' +
-          '"fotoPartido":"' + cellValues.pop() + '"' +
+          '"nombre":"'      + cellValues.pop() + '",' +
+          '"pagina":"'      + cellValues.pop() + '",' +
+          '"foto":"'        + cellValues.pop() + '",' +
+          '"partido":"'     + cellValues.pop() + '",' +
+          '"comision":"'    + cellValues.pop() + '",' +
+          '"twitter":"'     + cellValues.pop() + '",' +
+          '"fotoPartido":"' + cellValues.pop() + '",' +
+          '"perfil":"'      + cellValues.pop() + '"'  +
           '}'
         );
         concejales.push(JSON.parse(concejal));
@@ -291,47 +333,6 @@ function getConcejales(callback) {
 router.get('/concejales', (req, res) =>
   getConcejales((concejales) => {
     res.json(concejales);
-  })
-);
-/* ---------------------------SECRETARIOS----------------------------- */
-
-/* Helper func to get the contents from "Secretarios"*/
-function getSecretarios(callback) {
-  /* Authentication method */
-  doc.useServiceAccountAuth(googleCreds, (err, resp) => {
-    if (err) throw err;
-
-    /* Now that we've auth'd, get all the cells */
-    doc.getCells(3, { "min-row": 1, "min-col": 1 }, (err2, cells) => {
-      if (err2) throw err2;
-
-      var secretarios = [];
-      let cellValues = [];
-
-      /* Get all the values into cellValues */
-      cells.forEach(element => {
-        cellValues.unshift(element._value);
-      });
-      /* While cellValues != empty, push 4 elements (a row) as an object */
-      while (cellValues.length > 0) {
-        var secretario = ('{' +
-          '"nombre":"' + cellValues.pop() + '",' +
-          '"secretaria":"' + cellValues.pop() + '",' +
-          '"foto":"' + cellValues.pop() + '",' +
-          '"twitter":"' + cellValues.pop() + '"' +
-          '}'
-        );
-        secretarios.push(JSON.parse(secretario));
-      }
-      callback(secretarios);
-    })
-  })
-}
-
-/* GET JSON from /secretarios */
-router.get('/secretarios', (req, res) =>
-  getSecretarios((secretarios) => {
-    res.json(secretarios);
   })
 );
 
