@@ -76,14 +76,14 @@ class Concejales extends Component {
         return this.state.concejales.map((concejal, index) => {
             return (
                 <Link to={"/concejales/" + index}>
-                    <Card className="directorioConcejal">
+                    <Card style={{margin:"12px"}}>
                         <Grid container>
                             <Grid item xs>
                                 <div className="bloqueFoto">
                                     <img
                                         src={concejal.foto}
                                         alt={"foto de " + concejal.nombre}
-                                        className="fotoConcejal"></img>
+                                        style={{ "height": "65px" }}></img>
                                 </div>
                             </Grid>
                             <Grid item xs>
@@ -103,7 +103,7 @@ class Concejales extends Component {
                                     <img
                                         src={concejal.fotoPartido}
                                         alt={"imagen de " + concejal.partido}
-                                        className="fotoPartido"></img>
+                                        style={{ "height": "45px" }}></img>
                                     <Typography variant="body2">{concejal.partido}</Typography>
                                 </div>
                             </Grid>
@@ -119,10 +119,11 @@ class Concejales extends Component {
         return (
 
             <div className="pantallaDirectorio">
+                
                 <Card className="tituloBusqueda">
-                    <Typography variant="title" >
+                    <Typography variant="headline" >
                         Concejo de Bogotá 2014 - 2018
-                        </Typography>
+                    </Typography>
                     <input
                         type="text"
                         placeholder="Buscar"
@@ -131,7 +132,10 @@ class Concejales extends Component {
                         onChange={e => this.search(document.getElementById("search").value)}
                     />
                 </Card>
-                <Paper elevation={7} className="sorting">
+                <Card elevation={7} className="sorting">
+                    <Typography variant="subheading" >
+                        Ordenar por:
+                    </Typography>
                     <Button
                         onClick={e => this.sortBy("nombre")}
                         disabled={this.state.selected === "nombre"}
@@ -150,7 +154,7 @@ class Concejales extends Component {
                     >
                         Comisión
                         </Button>
-                </Paper>
+                </Card>
                 <div className="listaConcejales">
                     {this.renderConcejales()}
                 </div>
