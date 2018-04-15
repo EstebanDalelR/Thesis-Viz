@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
-import "../CSS/Secretarios.css"
+import Paper from 'material-ui/Paper';
+import Button from 'material-ui/Button';
+import Typography from 'material-ui/Typography';
+import Card from 'material-ui/Card';
+import Grid from 'material-ui/Grid';
 
 class Secretarios extends Component {
     constructor(props) {
@@ -61,20 +65,28 @@ class Secretarios extends Component {
     renderSecretarios() {
         return this.state.secretarios.map((secretario, index) => {
             return (
-                <div className="directorioSecretario">
-                    <div className="bloqueFoto">
-                        <img
-                            src={secretario.foto}
-                            alt={"foto de " + secretario.nombre}
-                            className="fotoSecretario"></img>
-                    </div>
-                    <div className="bloqueNombre">
-                        <h2> {secretario.nombre}</h2>
-                    </div>
-                    <div className="bloqueComision">
-                        <h5>Secretaria de {secretario.secretaria}</h5>
-                    </div>
-                </div>
+                <Card style={{ margin: "12px" }}>
+                    <Grid container>
+                        <Grid item xs>
+                            <div className="bloqueFoto">
+                                <img
+                                    src={secretario.foto}
+                                    alt={"foto de " + secretario.nombre}
+                                    style={{ "height": "65px" }}></img>
+                            </div>
+                        </Grid>
+                        <Grid item xs>
+                            <div className="bloqueNombre">
+                                <h2> {secretario.nombre}</h2>
+                            </div>
+                        </Grid>
+                        <Grid item xs>
+                            <div className="bloqueComision">
+                                <h5>Secretaria de {secretario.secretaria}</h5>
+                            </div>
+                        </Grid>
+                    </Grid>
+                </Card>
             )
         })
     }
@@ -83,9 +95,11 @@ class Secretarios extends Component {
             <div>
                 <div className="pantallaDirectorio">
                     <div className="tituloBusqueda">
-                        <h1 className="titulo">
+                        <Typography variant="headline" >
                             Secretarios de Bogotá Mejor para Todos 2014 - 2018
-                        </h1>
+                    </Typography>
+                    </div>
+                    <Card className="sorting">
                         <input
                             type="text"
                             placeholder="Buscar"
@@ -93,15 +107,18 @@ class Secretarios extends Component {
                             id="search"
                             onChange={e => this.search(document.getElementById("search").value)}
                         />
-                    </div>
-                    <div className="sorting">
-                        <button
+                        <Typography variant="subheading" >
+                            Ordenar por:
+                    </Typography>
+                        <Button
                             onClick={e => this.sortBy("nombre")}
-                        > Nombre </button>
-                        <button
+                            disabled={this.state.selected === "nombre"}
+                        > Nombre </Button>
+                        <Button
                             onClick={e => this.sortBy("secretaria")}
-                        > Secretaria </button>
-                    </div>
+                            disabled={this.state.selected === "secretaria"}
+                        > Secretaria </Button>
+                    </Card>
                     <div className="listaSecretarios">
                         {this.renderSecretarios()}
                     </div>

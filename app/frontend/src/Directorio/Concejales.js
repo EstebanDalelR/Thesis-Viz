@@ -120,19 +120,19 @@ class Concejales extends Component {
 
             <div className="pantallaDirectorio">
                 
-                <Card className="tituloBusqueda">
+                <div className="tituloBusqueda">
                     <Typography variant="headline" >
                         Concejo de Bogotá 2014 - 2018
                     </Typography>
-                    <input
+                </div>
+                <Card elevation={7} className="sorting">
+                <input
                         type="text"
                         placeholder="Buscar"
                         className="barraBusqueda"
                         id="search"
                         onChange={e => this.search(document.getElementById("search").value)}
                     />
-                </Card>
-                <Card elevation={7} className="sorting">
                     <Typography variant="subheading" >
                         Ordenar por:
                     </Typography>
