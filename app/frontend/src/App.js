@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router'
 import { MuiThemeProvider } from 'material-ui/styles';
+import { CircularProgress } from 'material-ui/Progress';
+import purple from 'material-ui/colors/purple';
 
 import Navbar from './Directorio/Navbar.js';
 import Concejal from './Directorio/Concejal.js';
@@ -101,6 +103,7 @@ class App extends Component {
       return (
         <div className="App">
           Cargando
+          <CircularProgress style={{ color: purple[500] }} thickness={7} />
         </div>
       );
     }
