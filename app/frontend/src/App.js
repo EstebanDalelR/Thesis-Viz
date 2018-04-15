@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router'
+import { Route, Switch } from 'react-router'
+import { MuiThemeProvider } from 'material-ui/styles';
 
-import './CSS/App.css';
 import Navbar from './Directorio/Navbar.js';
 import Concejal from './Directorio/Concejal.js';
 import Concejales from './Directorio/Concejales.js';
@@ -17,7 +17,7 @@ class App extends Component {
   }
 
   componentWillMount() {
-    fetch('http://localhost:3000/camara',
+/*     fetch('http://localhost:3000/camara',
       {
         method: 'GET',
         headers: { accept: 'application/json' }
@@ -30,7 +30,7 @@ class App extends Component {
         this.setState({
           camara: camara
         });
-      });
+      }); */
 
     fetch('http://localhost:3000/concejales',
       {
@@ -77,6 +77,7 @@ class App extends Component {
     if (concejales.length > 1) {
       return (
         <div className="App">
+          <MuiThemeProvider>
           <Navbar />
           <Switch>
             <Route
@@ -92,13 +93,14 @@ class App extends Component {
             <Route path="/secretarios" render={props => (<Secretarios secretarios={this.state.secretarios} />)} />
           </Switch>
           {/*{<ProyectoAcuerdo concejal={concejales[4]}/>} */}
+          </MuiThemeProvider>
         </div>
       );
     }
     else {
       return (
         <div className="App">
-
+          Cargando
         </div>
       );
     }

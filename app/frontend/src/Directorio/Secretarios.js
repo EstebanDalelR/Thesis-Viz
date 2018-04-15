@@ -4,18 +4,18 @@ import "../CSS/Secretarios.css"
 class Secretarios extends Component {
     constructor(props) {
         super(props);
-        this.state = { 
+        this.state = {
             secretarios: this.props.secretarios,
             selected: "nombre",
-         }
-         document.title="Secretarios";
+        }
+        document.title = "Secretarios";
     }
     losProps = this.props.secretarios;
 
-    search(input){
+    search(input) {
         var currentSecretarios = this.state.secretarios;
         var found = currentSecretarios.filter(
-            buscado=>{
+            buscado => {
                 return buscado.nombre.toLowerCase().includes(input.toLowerCase());
             }
         )
@@ -24,7 +24,7 @@ class Secretarios extends Component {
                 secretarios: found,
             }
         )
-        if(input === "") this.setState({secretarios: this.losProps,})
+        if (input === "") this.setState({ secretarios: this.losProps, })
     }
 
     sortBy(sorting) {
@@ -32,7 +32,7 @@ class Secretarios extends Component {
         var sortedSecretarios;
         switch (sorting) {
             case "secretaria":
-            sortedSecretarios = currentSecretarios.sort(
+                sortedSecretarios = currentSecretarios.sort(
                     (secretario1, secretario2) => {
                         if (secretario1.secretaria < secretario2.secretaria) return -1;
                         if (secretario1.secretaria > secretario2.secretaria) return 1;
@@ -46,6 +46,8 @@ class Secretarios extends Component {
                         if (secretario1.nombre > secretario2.nombre) return 1;
                         return 0;
                     })
+                break;
+            default:
                 break;
         }
         this.setState(
@@ -76,10 +78,10 @@ class Secretarios extends Component {
             )
         })
     }
-    render() { 
-        return ( 
+    render() {
+        return (
             <div>
-            <div className="pantallaDirectorio">
+                <div className="pantallaDirectorio">
                     <div className="tituloBusqueda">
                         <h1 className="titulo">
                             Secretarios de Bogotá Mejor para Todos 2014 - 2018
@@ -105,8 +107,8 @@ class Secretarios extends Component {
                     </div>
                 </div>
             </div>
-         )
+        )
     }
 }
- 
+
 export default Secretarios;
