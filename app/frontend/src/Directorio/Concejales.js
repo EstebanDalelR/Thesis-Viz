@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import Paper from 'material-ui/Paper';
 import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
 import Card from 'material-ui/Card';
@@ -61,6 +60,7 @@ class Concejales extends Component {
                         if (concejal1.comision > concejal2.comision) return 1;
                         return 0;
                     })
+                break;
             default:
                 break;
         }
@@ -76,7 +76,7 @@ class Concejales extends Component {
         return this.state.concejales.map((concejal, index) => {
             return (
                 <Link to={"/concejales/" + index}>
-                    <Card style={{margin:"12px"}}>
+                    <Card style={{ margin: "12px" }}>
                         <Grid container>
                             <Grid item xs>
                                 <div className="bloqueFoto">
@@ -116,17 +116,19 @@ class Concejales extends Component {
     }
 
     render() {
+        document.title = "Concejales";
+
         return (
 
             <div className="pantallaDirectorio">
-                
+
                 <div className="tituloBusqueda">
                     <Typography variant="headline" >
                         Concejo de Bogotá 2014 - 2018
                     </Typography>
                 </div>
-                <Card elevation={7} className="sorting">
-                <input
+                <Card className="sorting">
+                    <input
                         type="text"
                         placeholder="Buscar"
                         className="barraBusqueda"
