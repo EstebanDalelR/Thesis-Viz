@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Paper from 'material-ui/Paper';
 import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
 import Card from 'material-ui/Card';
@@ -91,6 +90,7 @@ class Secretarios extends Component {
         })
     }
     render() {
+        document.title="Secretarios";        
         return (
             <div>
                 <div className="pantallaDirectorio">
