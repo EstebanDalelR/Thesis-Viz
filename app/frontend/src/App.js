@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router'
 import { MuiThemeProvider } from 'material-ui/styles';
+import { CircularProgress } from 'material-ui/Progress';
+import purple from 'material-ui/colors/purple';
 
 import Navbar from './Directorio/Navbar.js';
 import Concejal from './Directorio/Concejal.js';
@@ -14,6 +16,7 @@ class App extends Component {
     camara: [],
     concejales: [],
     secretarios: [],
+    citaciones:[],
   }
 
   componentWillMount() {
@@ -61,7 +64,20 @@ class App extends Component {
           secretarios: secretarios
         });
       });
-
+      fetch('http://localhost:3000/citaciones',
+      {
+        method: 'GET',
+        headers: { accept: 'application/json' },
+      })
+      .then((res) => {
+        if (res.ok)
+          return res.json();
+      })
+      .then((citaciones) => {
+        this.setState({
+          citaciones: citaciones
+        });
+      });
   }
 
   mapChildren() {
@@ -87,7 +103,12 @@ class App extends Component {
             />
             <Route
               path="/concejales/:number"
-              render={props => (<Concejal info={concejales[props.match.params.number]} />)}
+              render={props => (
+                <Concejal 
+                info={concejales[props.match.params.number]}
+                concejales={this.state.concejales} 
+                citaciones={this.state.citaciones} />
+                )}
             />
             <Route path="/proyectosAcuerdo" render={props => (<ProyectosAcuerdo proyectosAcuerdo={[]} />)} />
             <Route path="/secretarios" render={props => (<Secretarios secretarios={this.state.secretarios} />)} />
@@ -101,6 +122,7 @@ class App extends Component {
       return (
         <div className="App">
           Cargando
+          <CircularProgress style={{ color: purple[500] }} thickness={7} />
         </div>
       );
     }
