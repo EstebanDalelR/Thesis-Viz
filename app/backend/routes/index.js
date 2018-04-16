@@ -336,6 +336,47 @@ router.get('/concejales', (req, res) =>
   })
 );
 
+/* Helper func to get the contents from "concejo"*/
+function getCitaciones(callback) {
+  /* Authentication method */
+  doc.useServiceAccountAuth(googleCreds, (err, resp) => {
+    if (err) throw err;
+
+    /* Now that we've auth'd, get all the cells */
+    doc.getCells(8, { "min-row": 1, "min-col": 1 }, (err2, cells) => {
+      if (err2) throw err2;
+
+      var citaciones = [];
+      let cellValues = [];
+
+      /* Get all the values into cellValues */
+      cells.forEach(element => {
+        cellValues.unshift(element._value);
+      });
+      /* While cellValues != empty, push 4 elements (a row) as an object */
+      while (cellValues.length > 0) {
+        var citacion = ('{' +
+          '"citador":"'   + cellValues.pop() + '",' +
+          '"citado":"'    + cellValues.pop() + '",' +
+          '"fecha":"'     + cellValues.pop() + '",' +
+          '"intervino":"' + cellValues.pop() + '",' +
+          '"tema":"'      + cellValues.pop() + '"'  +
+          '}'
+        );
+        citaciones.push(JSON.parse(citacion));
+      }
+      callback(citaciones);
+    })
+  })
+}
+
+/* GET JSON from /citaciones */
+router.get('/citaciones', (req, res) =>
+  getCitaciones((citaciones) => {
+    res.json(citaciones);
+  })
+);
+
 /* ---------------------------ALCALDIASLOCALES----------------------------- */
 
 /* Helper func to get the contents from "concejo"*/
