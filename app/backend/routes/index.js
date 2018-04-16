@@ -230,10 +230,10 @@ function getSecretarios(callback) {
       /* While cellValues != empty, push 4 elements (a row) as an object */
       while (cellValues.length > 0) {
         var secretario = ('{' +
-          '"nombre":"' + cellValues.pop() + '",' +
+          '"nombre":"'     + cellValues.pop() + '",' +
           '"secretaria":"' + cellValues.pop() + '",' +
-          '"foto":"' + cellValues.pop() + '",' +
-          '"twitter":"' + cellValues.pop() + '"' +
+          '"foto":"'       + cellValues.pop() + '",' +
+          '"twitter":"'    + cellValues.pop() + '"' +
           '}'
         );
         secretarios.push(JSON.parse(secretario));
