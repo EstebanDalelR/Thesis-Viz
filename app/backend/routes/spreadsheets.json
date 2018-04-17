@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "plucky-point-195921",
+  "private_key_id": "b49a958ce75536fd4221c190e4f28d38fd11a2a4",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCJL11S8rq5wYhs\nqIKPHHRJCSTfjcJ1XbnZk2mH8JNeKy6vbCpitAWfdVtdDtWc1Dsa0+brNUOoU5cl\ntz3Q4byBOiYqzMoYpPJ8NJ7k4v0eGi4F3fv1K6/oZpCtZUdccy8X1YYDD2UrnGg5\nJtSYPJlEW5titrQhDRWkg4TeK7VkcAwyyr6VnyL1nSh6Jv6n2vYHAJw0aF912X3T\nU7uKRV05BF4YdfBCPZJ+Nqhl2WFL/Z75i/JHE+HH9CywwkSeB+bq16z7UBN6/h7M\nc3CDyaMndNmW+/BSo+SFebKXXd9C4MG9i3Hwxp04OIV9J2Iv+WWV/A3Da1dKxkjP\nsJU3dfV3AgMBAAECggEANFpliJrGZM51VFZIoPnwbND3B/OPEwBGRUDLBMxsSQM8\nyUiDsnBWNwDv8YcQQU4DEl1s4jVNESd5ZrTT++ux5zU8TJgjxhzoxzrDqsDvbPX7\nu1R4a5uVAaFmtC2S+ragcb2Ua4WMDAUgBzOI7WIu8ZXuKlFkU7qtGD/yzGCs1FuZ\nV1chxbbQPLUYpUYghWj44sS4MzW/QMky7xT0yQBClEKhE10OTqv2W056Ae8D5Zrp\ns4HfJ7szYOU4o/rBUozJy9vN+uzNHpZIXIkzwOxXC5eQPVikDe8QEW5hq1MsEkzb\nBJRn2kXt0dgqL3tmxFeZYqa0wVwHzGdKT6CioaGfOQKBgQC+CJashzBJ4qr6UiCd\nJBKcJDr+dbbEP9o8V7LFn0+uCkJb/SDGRCO0Oo3EG49w6rVX3/F8nvD927TZiaxT\nqdBVg5/HntjMeGOfAkJhsffn0zFq/i2rQgYzlI3TfDmFeHPoBzYtvILyk6wjA4Uo\ndbyxF5lWdGMVFSubktuBtpbgHwKBgQC4zl50ljlbTsfPpXXtM3VBMeHxnfComVCJ\nBcFrXNjF0uU50Iyei09dZOGj8HMo7lesmRk3g8kh4OkJmMzgLf3IrfoJwxn+bhGz\nFn+FlUob6fbsACGZgjiIHwYDMJueQfK+2Wv9iPjbpgRxqySUaH8GYxDKW0/qysSm\nsAfTxz/fqQKBgQCTTrEN2FW0UILdPCCP71CFvQgGDFW61wxizlCEJLRtYwKBsDxh\ntJxAr0sJg5uzmh0smynkwohpIJCWOMRerjoSr8+BvD6ucXw33FZ8yKo1CF88YwAf\nyzRnc3ZlQ9yK/A5NBJoY5hJT2+kJ00a7UFkOpg51GA9eXmTJWhPR/yoBXQKBgQCa\n0RdD6A1ItqihBWXTPoZ+BUHY3Y0cUMOs5ktwm6lloBUz58fFkcL85GQ6qFZw9aox\nB1ieryIx5W6UAZOwQhcWpNiQkQcXpDHjq3dM+xHIbKnUbw+2v+aH8iVhSrkzTOAE\njbPwA20m5N9YMh1Ezn2LZjZMr041zYQMd+82tPaHcQKBgDLcmjc8vgVP9J4KXZNA\nbb7+ddK77UJL7WDQ0W96K5mDsW7crRC7dHFEoNtmnbM7WnR2agktxQ+AWn0fNcb4\nFRZfEyT4CgGs5POi9MvelYR5fLxvjGEJ2EQhiNoKkJKK9R9ZLpwGuxxna9fBjvSQ\nphrTqhccQYwnelnTHspoDiO/\n-----END PRIVATE KEY-----\n",
+  "client_email": "secgob@plucky-point-195921.iam.gserviceaccount.com",
+  "client_id": "105759768862160117936",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/secgob%40plucky-point-195921.iam.gserviceaccount.com"
+}

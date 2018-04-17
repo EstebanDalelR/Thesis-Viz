@@ -230,10 +230,10 @@ function getSecretarios(callback) {
       /* While cellValues != empty, push 4 elements (a row) as an object */
       while (cellValues.length > 0) {
         var secretario = ('{' +
-          '"nombre":"' + cellValues.pop() + '",' +
+          '"nombre":"'     + cellValues.pop() + '",' +
           '"secretaria":"' + cellValues.pop() + '",' +
-          '"foto":"' + cellValues.pop() + '",' +
-          '"twitter":"' + cellValues.pop() + '"' +
+          '"foto":"'       + cellValues.pop() + '",' +
+          '"twitter":"'    + cellValues.pop() + '"' +
           '}'
         );
         secretarios.push(JSON.parse(secretario));
@@ -374,6 +374,49 @@ function getCitaciones(callback) {
 router.get('/citaciones', (req, res) =>
   getCitaciones((citaciones) => {
     res.json(citaciones);
+  })
+);
+
+/* Helper func to get the contents from "concejo"*/
+function getAsuntos(callback) {
+  /* Authentication method */
+  doc.useServiceAccountAuth(googleCreds, (err, resp) => {
+    if (err) throw err;
+
+    /* Now that we've auth'd, get all the cells */
+    doc.getCells(9, { "min-row": 1, "min-col": 1, "return-empty":true }, (err2, cells) => {
+      if (err2) throw err2;
+
+      var asuntos = [];
+      let cellValues = [];
+
+      /* Get all the values into cellValues */
+      cells.forEach(element => {
+        cellValues.unshift(element._value);
+      });
+      /* While cellValues != empty, push 4 elements (a row) as an object */
+      while (cellValues.length > 0) {
+        var asunto = ('{' +
+          '"numero":"'      + cellValues.pop() + '",' +
+          '"antecedente":"' + cellValues.pop() + '",' +
+          '"titulo":"'      + cellValues.pop() + '",' +
+          '"autor":"'       + cellValues.pop() + '",' +
+          '"comision":"'    + cellValues.pop() + '",' +
+          '"fechaConcejo":"'+ cellValues.pop() + '",' +
+          '"fechaSecGob":"' + cellValues.pop() + '"'  +
+          '}'
+        );
+        asuntos.push(JSON.parse(asunto));
+      }
+      callback(asuntos);
+    })
+  })
+}
+
+/* GET JSON from /asuntos */
+router.get('/asuntos', (req, res) =>
+  getAsuntos((asuntos) => {
+    res.json(asuntos);
   })
 );
 
