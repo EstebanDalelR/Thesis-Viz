@@ -7,6 +7,7 @@ import Typography from 'material-ui/Typography';
 
 class Navbar extends Component {
     render() {
+        const style={color:"#311B92"};
         return (
             <div>
                 <AppBar position="static">
@@ -14,7 +15,7 @@ class Navbar extends Component {
                         <Grid item xs>
                             <NavLink to="/">
                                 <Button color="inherit">
-                                    <Typography variant="button" gutterBottom>
+                                    <Typography variant="button" gutterBottom color="secondary">
                                         Home
                                     </Typography>
                                 </Button>
@@ -23,7 +24,7 @@ class Navbar extends Component {
                         <Grid item xs>
                             <NavLink to="/secretarios">
                                 <Button color="inherit">
-                                    <Typography variant="button" gutterBottom>
+                                    <Typography variant="button" gutterBottom color="secondary">
                                         Secretarios
                                     </Typography>
                                 </Button>
@@ -32,7 +33,7 @@ class Navbar extends Component {
                         <Grid item xs>
                             <NavLink to="/concejales">
                                 <Button color="inherit">
-                                    <Typography variant="button" gutterBottom>
+                                    <Typography variant="button" gutterBottom color="secondary">
                                         Concejales
                                     </Typography>
                                 </Button>
