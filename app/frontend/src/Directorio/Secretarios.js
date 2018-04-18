@@ -67,22 +67,16 @@ class Secretarios extends Component {
                 <Card style={{ margin: "12px" }}>
                     <Grid container>
                         <Grid item xs>
-                            <div className="bloqueFoto">
                                 <img
                                     src={secretario.foto}
                                     alt={"foto de " + secretario.nombre}
                                     style={{ "height": "65px" }}></img>
-                            </div>
                         </Grid>
                         <Grid item xs>
-                            <div className="bloqueNombre">
-                                <h2> {secretario.nombre}</h2>
-                            </div>
+                                <Typography variant="title"> {secretario.nombre}</Typography>
                         </Grid>
                         <Grid item xs>
-                            <div className="bloqueComision">
-                                <h5>Secretaria de {secretario.secretaria}</h5>
-                            </div>
+                                <Typography variant="subheading">Secretaria de {secretario.secretaria}</Typography>
                         </Grid>
                     </Grid>
                 </Card>
