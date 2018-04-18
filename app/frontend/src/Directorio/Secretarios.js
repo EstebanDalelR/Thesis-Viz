@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import Button from 'material-ui/Button';
-import Typography from 'material-ui/Typography';
 import Card from 'material-ui/Card';
 import Grid from 'material-ui/Grid';
+import Button from 'material-ui/Button';
+import TextField from 'material-ui/TextField';
+import Typography from 'material-ui/Typography';
 
 class Secretarios extends Component {
     constructor(props) {
@@ -67,16 +68,16 @@ class Secretarios extends Component {
                 <Card style={{ margin: "12px" }}>
                     <Grid container>
                         <Grid item xs>
-                                <img
-                                    src={secretario.foto}
-                                    alt={"foto de " + secretario.nombre}
-                                    style={{ "height": "65px" }}></img>
+                            <img
+                                src={secretario.foto}
+                                alt={"foto de " + secretario.nombre}
+                                style={{ "height": "65px" }}></img>
                         </Grid>
                         <Grid item xs>
-                                <Typography variant="title"> {secretario.nombre}</Typography>
+                            <Typography variant="title"> {secretario.nombre}</Typography>
                         </Grid>
                         <Grid item xs>
-                                <Typography variant="subheading">Secretaria de {secretario.secretaria}</Typography>
+                            <Typography variant="subheading">Secretaria de {secretario.secretaria}</Typography>
                         </Grid>
                     </Grid>
                 </Card>
@@ -84,7 +85,7 @@ class Secretarios extends Component {
         })
     }
     render() {
-        document.title="Secretarios";        
+        document.title = "Secretarios";
         return (
             <div>
                 <div className="pantallaDirectorio">
@@ -94,15 +95,16 @@ class Secretarios extends Component {
                     </Typography>
                     </div>
                     <Card className="sorting">
-                        <input
-                            type="text"
-                            placeholder="Buscar"
-                            className="barraBusqueda"
+                        <TextField
                             id="search"
+                            label="Buscar"
+                            type="search"
+                            margin="normal"
                             onChange={e => this.search(document.getElementById("search").value)}
                         />
                         <Typography variant="subheading" >
                             Ordenar por:
+
                     </Typography>
                         <Button
                             onClick={e => this.sortBy("nombre")}
