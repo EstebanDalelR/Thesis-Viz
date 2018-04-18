@@ -16,7 +16,8 @@ class Concejal extends Component {
         this.state = {
             "concejal": this.props.info,
             "citaciones": this.props.citaciones,
-            "tweets": []
+            "tweets": [],
+            "asuntos":[]
         }
     }
 
@@ -77,7 +78,7 @@ class Concejal extends Component {
     }
 
     componentWillMount() {
-        fetch('http://localhost:3000/twitsfromamount/' + this.state.concejal.twitter + '/3',
+        fetch('http://165.227.187.208:3000/twitsfromamount/' + this.state.concejal.twitter + '/3',
             {
                 method: 'GET',
                 headers: { accept: 'application/json' },
@@ -89,6 +90,20 @@ class Concejal extends Component {
             .then((tweets) => {
                 this.setState({
                     tweets: tweets
+                });
+            });
+        fetch('http://165.227.187.208:3000/asuntos',
+            {
+                method: 'GET',
+                headers: { accept: 'application/json' },
+            })
+            .then((res) => {
+                if (res.ok)
+                    return res.json();
+            })
+            .then((asuntos) => {
+                this.setState({
+                    asuntos: asuntos
                 });
             });
     }
@@ -107,8 +122,28 @@ class Concejal extends Component {
             return <CircularProgress style={{ color: purple[500] }} thickness={7} />
         }
     }
+    
     drawMap() {
 
+    }
+
+    drawAsuntos(){
+        if (this.state.asuntos.length > 0) {
+            var losAsuntos = this.state.asuntos.filter(asunto => {
+                return asunto.autor === this.state.concejal.nombre ? true : false;
+            })
+            return losAsuntos.map(asunto => {
+                return (
+                <div>
+                    <Typography>{asunto[0].antecedente}</Typography>
+                    <hr />
+                </div>
+                )
+            })
+        }
+        else {
+            return <CircularProgress style={{ color: purple[500] }} thickness={7} />
+        }
     }
 
     render() {
@@ -145,6 +180,7 @@ class Concejal extends Component {
                             </div>
                             <div className="proyectosAcuerdo">
                                 {this.drawSection("Proyectos de Acuerdo")}
+                                {this.drawAsuntos()}
                             </div>
                             <div className="mesasTrabajo">
                                 {this.drawSection("Mesas de Trabajo")}
