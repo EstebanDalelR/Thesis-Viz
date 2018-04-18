@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import Button from 'material-ui/Button';
-import Typography from 'material-ui/Typography';
 import Card from 'material-ui/Card';
 import Grid from 'material-ui/Grid';
+import Button from 'material-ui/Button';
+import TextField from 'material-ui/TextField';
+import Typography from 'material-ui/Typography';
 
 class Concejales extends Component {
     constructor(props) {
@@ -128,13 +129,13 @@ class Concejales extends Component {
                     </Typography>
                 </div>
                 <Card className="sorting">
-                    <input
-                        type="text"
-                        placeholder="Buscar"
-                        className="barraBusqueda"
-                        id="search"
-                        onChange={e => this.search(document.getElementById("search").value)}
-                    />
+                <TextField
+                            id="search"
+                            label="Buscar"
+                            type="search"
+                            margin="normal"
+                            onChange={e => this.search(document.getElementById("search").value)}
+                        />
                     <Typography variant="subheading" >
                         Ordenar por:
                     </Typography>
