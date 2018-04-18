@@ -94,27 +94,30 @@ class Secretarios extends Component {
                             Secretarios de Bogotá Mejor para Todos 2014 - 2018
                     </Typography>
                     </div>
-                    <Card className="sorting">
-                        <TextField
-                            id="search"
-                            label="Buscar"
-                            type="search"
-                            margin="normal"
-                            onChange={e => this.search(document.getElementById("search").value)}
-                        />
-                        <Typography variant="subheading" >
-                            Ordenar por:
-
-                    </Typography>
-                        <Button
-                            onClick={e => this.sortBy("nombre")}
-                            disabled={this.state.selected === "nombre"}
-                        > Nombre </Button>
-                        <Button
-                            onClick={e => this.sortBy("secretaria")}
-                            disabled={this.state.selected === "secretaria"}
-                        > Secretaria </Button>
-                    </Card>
+                    <Grid container>
+                        <Grid item sm={6} xs={12}>
+                            <TextField
+                                id="search"
+                                label="Buscar"
+                                type="search"
+                                margin="normal"
+                                onChange={e => this.search(document.getElementById("search").value)}
+                            />
+                        </Grid>
+                        <Grid item sm={6} xs={12}>
+                            <Typography variant="subheading">
+                                Ordenar por:
+                                    </Typography>
+                            <Button
+                                onClick={e => this.sortBy("nombre")}
+                                disabled={this.state.selected === "nombre"}
+                            > Nombre </Button>
+                            <Button
+                                onClick={e => this.sortBy("secretaria")}
+                                disabled={this.state.selected === "secretaria"}
+                            > Secretaria </Button>
+                        </Grid>
+                    </Grid>
                     <div className="listaSecretarios">
                         {this.renderSecretarios()}
                     </div>

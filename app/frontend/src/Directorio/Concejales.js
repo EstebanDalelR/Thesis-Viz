@@ -120,44 +120,43 @@ class Concejales extends Component {
         document.title = "Concejales";
 
         return (
-
-            <div className="pantallaDirectorio">
-
-                <div className="tituloBusqueda">
-                    <Typography variant="headline" >
-                        Concejo de Bogotá 2014 - 2018
-                    </Typography>
-                </div>
-                <Card className="sorting">
-                <TextField
+            <div>
+                <Typography variant="headline" >
+                    Concejo de Bogotá 2014 - 2018
+                </Typography>
+                <Grid container>
+                    <Grid item sm={6} xs={12}>
+                        <TextField
                             id="search"
                             label="Buscar"
                             type="search"
-                            margin="normal"
                             onChange={e => this.search(document.getElementById("search").value)}
                         />
-                    <Typography variant="subheading" >
-                        Ordenar por:
-                    </Typography>
-                    <Button
-                        onClick={e => this.sortBy("nombre")}
-                        disabled={this.state.selected === "nombre"}
-                    >
-                        Nombre
+                    </Grid>
+                    <Grid item sm={6} xs={12}>
+                        <Typography variant="subheading">
+                            Ordenar por:
+                        </Typography>
+                        <Button
+                            onClick={e => this.sortBy("nombre")}
+                            disabled={this.state.selected === "nombre"}
+                        >
+                            Nombre
                         </Button>
-                    <Button
-                        onClick={e => this.sortBy("partido")}
-                        disabled={this.state.selected === "partido"}
-                    >
-                        Partido
+                        <Button
+                            onClick={e => this.sortBy("partido")}
+                            disabled={this.state.selected === "partido"}
+                        >
+                            Partido
                         </Button>
-                    <Button
-                        onClick={e => this.sortBy("comision")}
-                        disabled={this.state.selected === "comision"}
-                    >
-                        Comisión
+                        <Button
+                            onClick={e => this.sortBy("comision")}
+                            disabled={this.state.selected === "comision"}
+                        >
+                            Comisión
                         </Button>
-                </Card>
+                    </Grid>
+                </Grid>
                 <div className="listaConcejales">
                     {this.renderConcejales()}
                 </div>
