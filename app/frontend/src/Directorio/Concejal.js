@@ -152,16 +152,16 @@ class Concejal extends Component {
         return (
             <div>
                 <Grid container>
-                    <Grid item xs={10}>
+                    <Grid item md={10} >
                         <Paper style={{ margin: "18px", "padding": "9px" }}>
                             <Grid container>
-                                <Grid item xs={3}>
+                                <Grid item md={3} xs={12}>
                                     <img
                                         style={{ "height": "125px", "margin": "3px" }}
                                         src={this.state.concejal.foto}
                                         alt={"Foto de " + this.state.concejal.nombre} />
                                 </Grid>
-                                <Grid item xs={9}>
+                                <Grid item md={9} xs={12}>
                                     <Typography variant="display2">
                                         {this.state.concejal.nombre}
                                     </Typography>
@@ -173,10 +173,13 @@ class Concejal extends Component {
                             <div className="votaciones">
                                 {this.drawSection("Votaciones")}
                                 <Grid container>
-                                    <Grid item xs={9}>
-                                        <img alt="mapa de Bogota" src='http://cdn.radiosantafe.com//wp-content/uploads/2016/01/BOGOTA-MAPA.jpg' />
+                                    <Grid item xs={12} md={9}>
+                                        <img 
+                                        style={{maxWidth:"100%"}}
+                                        alt="mapa de Bogota" 
+                                        src='http://cdn.radiosantafe.com//wp-content/uploads/2016/01/BOGOTA-MAPA.jpg' />
                                     </Grid>
-                                    <Grid item xs={3}>
+                                    <Grid item md={3} xs={12}>
                                         <Table >
                                             <TableHead>
                                                 <TableRow>
@@ -227,7 +230,7 @@ class Concejal extends Component {
                             </div>
                         </Paper>
                     </Grid>
-                    <Grid item xs={2}>
+                    <Grid item md={2} xs={12}>
                         <div>
                             <Card style={{ margin: "9px", "padding": "9px" }}>
                                 <img
