@@ -6,9 +6,9 @@ import Paper from 'material-ui/Paper';
 import purple from 'material-ui/colors/purple';
 import Typography from 'material-ui/Typography';
 import { CircularProgress } from 'material-ui/Progress';
+import Table, { TableBody, TableCell, TableHead, TableRow } from 'material-ui/Table';
 
 import './bogota.json';
-import * as d3 from "d3";
 
 class Concejal extends Component {
     constructor(props) {
@@ -29,7 +29,7 @@ class Concejal extends Component {
             var retorn;
             (lasCitaciones.map(citacion => {
                 retorn = Object.entries(citacion).map(entry => {
-                    return <Typography>{entry[0] + ": " + entry[1]}</Typography>
+                    return (<Typography>{entry[0] + ": " + entry[1]}</Typography>)
                 })
             }));
             return retorn;
@@ -113,6 +113,7 @@ class Concejal extends Component {
             return this.state.tweets.map(tweet => {
                 return (<div>
                     <Typography>{tweet[0]}</Typography>
+                    <Typography>{tweet[1]}</Typography>
                     <hr />
                 </div>
                 )
@@ -152,11 +153,11 @@ class Concejal extends Component {
             <div>
                 <Grid container>
                     <Grid item xs={10}>
-                        <Paper style={{ margin: "9px" }}>
+                        <Paper style={{ margin: "18px", "padding": "9px" }}>
                             <Grid container>
                                 <Grid item xs={3}>
                                     <img
-                                        style={{ "height": "85px", "margin": "3px" }}
+                                        style={{ "height": "125px", "margin": "3px" }}
                                         src={this.state.concejal.foto}
                                         alt={"Foto de " + this.state.concejal.nombre} />
                                 </Grid>
@@ -171,7 +172,39 @@ class Concejal extends Component {
                             </Grid>
                             <div className="votaciones">
                                 {this.drawSection("Votaciones")}
-                                <img alt="mapa de Bogota" src='http://cdn.radiosantafe.com//wp-content/uploads/2016/01/BOGOTA-MAPA.jpg' />
+                                <Grid container>
+                                    <Grid item xs={9}>
+                                        <img alt="mapa de Bogota" src='http://cdn.radiosantafe.com//wp-content/uploads/2016/01/BOGOTA-MAPA.jpg' />
+                                    </Grid>
+                                    <Grid item xs={3}>
+                                        <Table >
+                                            <TableHead>
+                                                <TableRow>
+                                                    <TableCell>Localidad</TableCell>
+                                                    <TableCell >Votos</TableCell>
+                                                </TableRow>
+                                            </TableHead>
+                                            <TableBody>
+                                                <TableRow>
+                                                    <TableCell>Suba</TableCell>
+                                                    <TableCell numeric>1309</TableCell>
+                                                </TableRow>
+                                                <TableRow>
+                                                    <TableCell>Kennedy</TableCell>
+                                                    <TableCell numeric>894</TableCell>
+                                                </TableRow>
+                                                <TableRow>
+                                                    <TableCell>Teusaquillo</TableCell>
+                                                    <TableCell numeric>124</TableCell>
+                                                </TableRow>
+                                                <TableRow>
+                                                    <TableCell>Total</TableCell>
+                                                    <TableCell numeric>3111</TableCell>
+                                                </TableRow>
+                                            </TableBody>
+                                        </Table>
+                                    </Grid>
+                                </Grid>
                             </div>
                             <div className="hojaDeVida">
                                 {this.drawSection("Perfil")}
@@ -196,7 +229,7 @@ class Concejal extends Component {
                     </Grid>
                     <Grid item xs={2}>
                         <div>
-                            <Card style={{ margin: "9px" }}>
+                            <Card style={{ margin: "9px", "padding": "9px" }}>
                                 <img
                                     className="logoPartido"
                                     src={this.state.concejal.fotoPartido}
@@ -206,12 +239,12 @@ class Concejal extends Component {
                                 {this.otrosPartido()}
                             </Card>
 
-                            <Card style={{ margin: "9px" }}>
+                            <Card style={{ margin: "9px", "padding": "9px" }}>
                                 <Typography variant="subheading">Otros de {this.state.concejal.comision}</Typography>
                                 <hr />
                                 {this.otrosComision()}
                             </Card>
-                            <Card style={{ margin: "9px" }}>
+                            <Card style={{ margin: "9px", "padding": "9px" }}>
                                 <Typography variant="subheading">Tweets de {this.state.concejal.twitter}</Typography>
                                 <hr />
                                 {this.drawTweets()}
