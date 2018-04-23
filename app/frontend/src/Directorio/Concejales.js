@@ -77,9 +77,9 @@ class Concejales extends Component {
         return this.state.concejales.map((concejal, index) => {
             return (
                 <Link to={"/concejales/" + index}>
-                    <Card style={{ margin: "12px" }}>
+                    <Card style={{ marginTop: "6px" }}>
                         <Grid container>
-                            <Grid item xs>
+                            <Grid item sm={3} xs={6}>
                                 <div className="bloqueFoto">
                                     <img
                                         src={concejal.foto}
@@ -87,19 +87,19 @@ class Concejales extends Component {
                                         style={{ "height": "65px", "margin":"3px" }}></img>
                                 </div>
                             </Grid>
-                            <Grid item xs>
+                            <Grid item sm={3} xs={6}>
                                 <div className="bloqueNombre">
                                     <Typography variant="title"> {concejal.nombre}</Typography>
                                 </div>
                             </Grid>
 
-                            <Grid item xs>
+                            <Grid item sm={3} xs={6}>
                                 <div className="bloqueComision">
                                     <Typography variant="subheading">Comisión {concejal.comision}</Typography>
                                 </div>
                             </Grid>
 
-                            <Grid item xs>
+                            <Grid item sm={3} xs={6}>
                                 <div className="bloquePartido">
                                     <img
                                         src={concejal.fotoPartido}
@@ -120,7 +120,7 @@ class Concejales extends Component {
         document.title = "Concejales";
 
         return (
-            <div>
+            <div style={{ "padding": "18px" }}>
                 <Typography variant="headline" >
                     Concejo de Bogotá 2014 - 2018
                 </Typography>
