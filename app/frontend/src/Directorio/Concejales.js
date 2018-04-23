@@ -84,7 +84,7 @@ class Concejales extends Component {
                                     <img
                                         src={concejal.foto}
                                         alt={"foto de " + concejal.nombre}
-                                        style={{ "height": "65px" }}></img>
+                                        style={{ "height": "65px", "margin":"3px" }}></img>
                                 </div>
                             </Grid>
                             <Grid item xs>
