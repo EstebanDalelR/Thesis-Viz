@@ -65,19 +65,19 @@ class Secretarios extends Component {
     renderSecretarios() {
         return this.state.secretarios.map((secretario, index) => {
             return (
-                <Card style={{ margin: "12px" }}>
+                <Card style={{ marginTop: "6px" }}>
                     <Grid container>
-                        <Grid item xs>
+                        <Grid item sm={4} xs={6}>
                             <img
                                 src={secretario.foto}
                                 alt={"foto de " + secretario.nombre}
                                 style={{ "height": "65px" }}></img>
                         </Grid>
-                        <Grid item xs>
+                        <Grid item sm={4} xs={6}>
                             <Typography variant="title"> {secretario.nombre}</Typography>
                         </Grid>
-                        <Grid item xs>
-                            <Typography variant="subheading">Secretaria de {secretario.secretaria}</Typography>
+                        <Grid item sm={4} xs={12}>
+                            <Typography variant="subheading">Secretaría de {secretario.secretaria}</Typography>
                         </Grid>
                     </Grid>
                 </Card>
@@ -87,7 +87,7 @@ class Secretarios extends Component {
     render() {
         document.title = "Secretarios";
         return (
-            <div>
+            <div style={{ "padding": "18px" }}>
                 <div className="pantallaDirectorio">
                     <div className="tituloBusqueda">
                         <Typography variant="headline" >
