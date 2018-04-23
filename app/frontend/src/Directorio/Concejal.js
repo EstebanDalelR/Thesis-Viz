@@ -17,7 +17,7 @@ class Concejal extends Component {
             "concejal": this.props.info,
             "citaciones": this.props.citaciones,
             "tweets": [],
-            "asuntos":[]
+            "asuntos": []
         }
     }
 
@@ -122,22 +122,22 @@ class Concejal extends Component {
             return <CircularProgress style={{ color: purple[500] }} thickness={7} />
         }
     }
-    
+
     drawMap() {
 
     }
 
-    drawAsuntos(){
+    drawAsuntos() {
         if (this.state.asuntos.length > 0) {
             var losAsuntos = this.state.asuntos.filter(asunto => {
                 return asunto.autor === this.state.concejal.nombre ? true : false;
             })
             return losAsuntos.map(asunto => {
                 return (
-                <div>
-                    <Typography>{asunto[0].antecedente}</Typography>
-                    <hr />
-                </div>
+                    <div>
+                        <Typography>{asunto[0].antecedente}</Typography>
+                        <hr />
+                    </div>
                 )
             })
         }
@@ -152,11 +152,11 @@ class Concejal extends Component {
             <div>
                 <Grid container>
                     <Grid item xs={10}>
-                        <Paper style={{ margin: "3px" }}>
+                        <Paper style={{ margin: "9px" }}>
                             <Grid container>
                                 <Grid item xs={3}>
                                     <img
-                                        className="fotoPersona"
+                                        style={{ "height": "85px", "margin": "3px" }}
                                         src={this.state.concejal.foto}
                                         alt={"Foto de " + this.state.concejal.nombre} />
                                 </Grid>
