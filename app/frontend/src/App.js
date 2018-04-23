@@ -99,7 +99,7 @@ class App extends Component {
           contrastText: '#fff',
         },
         secondary: {
-          light: '#ff7961',
+          light: '#fff',
           main: '#fff',
           dark: '#fff',
           contrastText: '#fff',
@@ -118,10 +118,10 @@ class App extends Component {
               render={props => (<Concejales concejales={this.state.concejales} />)}
             />
             <Route
-              path="/concejales/:number"
+              path="/concejales/:nombre"
               render={props => (
                 <Concejal 
-                info={concejales[props.match.params.number]}
+                info={concejales[props.match.params.nombre]}
                 concejales={this.state.concejales} 
                 citaciones={this.state.citaciones} />
                 )}

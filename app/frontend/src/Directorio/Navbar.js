@@ -7,7 +7,6 @@ import Typography from 'material-ui/Typography';
 
 class Navbar extends Component {
     render() {
-        const style={color:"#311B92"};
         return (
             <div>
                 <AppBar position="static">
