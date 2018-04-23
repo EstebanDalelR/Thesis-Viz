@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router'
+import purple from 'material-ui/colors/purple';
+import { createMuiTheme } from 'material-ui/styles';
 import { MuiThemeProvider } from 'material-ui/styles';
 import { CircularProgress } from 'material-ui/Progress';
-import purple from 'material-ui/colors/purple';
-
 import Navbar from './Directorio/Navbar.js';
 import Concejal from './Directorio/Concejal.js';
 import Concejales from './Directorio/Concejales.js';
@@ -18,9 +18,9 @@ class App extends Component {
     secretarios: [],
     citaciones:[],
   }
-
+  
   componentWillMount() {
-/*     fetch('http://localhost:3000/camara',
+    /*     fetch('http://165.227.187.208:3000/camara',
       {
         method: 'GET',
         headers: { accept: 'application/json' }
@@ -35,7 +35,7 @@ class App extends Component {
         });
       }); */
 
-    fetch('http://localhost:3000/concejales',
+    fetch('http://165.227.187.208:3000/concejales',
       {
         method: 'GET',
         headers: { accept: 'application/json' }
@@ -50,50 +50,66 @@ class App extends Component {
         });
       });
 
-    fetch('http://localhost:3000/secretarios',
+    fetch('http://165.227.187.208:3000/secretarios',
       {
         method: 'GET',
         headers: { accept: 'application/json' }
       })
       .then((res) => {
         if (res.ok)
-          return res.json();
+        return res.json();
       })
       .then((secretarios) => {
         this.setState({
           secretarios: secretarios
         });
       });
-      fetch('http://localhost:3000/citaciones',
+      fetch('http://165.227.187.208:3000/citaciones',
       {
         method: 'GET',
         headers: { accept: 'application/json' },
       })
       .then((res) => {
         if (res.ok)
-          return res.json();
+        return res.json();
       })
       .then((citaciones) => {
         this.setState({
           citaciones: citaciones
         });
       });
-  }
-
+    }
+    
   mapChildren() {
     return this.state.concejales.map(
       (t, i) => {
         return <Concejal info={t} key={i} />;
       })
   }
-
+  
   render() {
     /* var camara = this.state.camara; */
     var concejales = this.state.concejales;
+    const theme = createMuiTheme({
+      palette: {
+        primary: {
+          light: '#757ce8',
+          main: '#3f50b5',
+          dark: '#002884',
+          contrastText: '#fff',
+        },
+        secondary: {
+          light: '#ff7961',
+          main: '#fff',
+          dark: '#fff',
+          contrastText: '#fff',
+        },
+      },
+    })
     if (concejales.length > 1) {
       return (
         <div className="App">
-          <MuiThemeProvider>
+          <MuiThemeProvider theme={theme}>
           <Navbar />
           <Switch>
             <Route

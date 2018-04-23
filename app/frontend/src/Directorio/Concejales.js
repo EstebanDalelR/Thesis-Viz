@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import Button from 'material-ui/Button';
-import Typography from 'material-ui/Typography';
 import Card from 'material-ui/Card';
 import Grid from 'material-ui/Grid';
+import Button from 'material-ui/Button';
+import TextField from 'material-ui/TextField';
+import Typography from 'material-ui/Typography';
 
 class Concejales extends Component {
     constructor(props) {
@@ -119,44 +120,43 @@ class Concejales extends Component {
         document.title = "Concejales";
 
         return (
-
-            <div className="pantallaDirectorio">
-
-                <div className="tituloBusqueda">
-                    <Typography variant="headline" >
-                        Concejo de Bogotá 2014 - 2018
-                    </Typography>
-                </div>
-                <Card className="sorting">
-                    <input
-                        type="text"
-                        placeholder="Buscar"
-                        className="barraBusqueda"
-                        id="search"
-                        onChange={e => this.search(document.getElementById("search").value)}
-                    />
-                    <Typography variant="subheading" >
-                        Ordenar por:
-                    </Typography>
-                    <Button
-                        onClick={e => this.sortBy("nombre")}
-                        disabled={this.state.selected === "nombre"}
-                    >
-                        Nombre
+            <div>
+                <Typography variant="headline" >
+                    Concejo de Bogotá 2014 - 2018
+                </Typography>
+                <Grid container>
+                    <Grid item sm={6} xs={12}>
+                        <TextField
+                            id="search"
+                            label="Buscar"
+                            type="search"
+                            onChange={e => this.search(document.getElementById("search").value)}
+                        />
+                    </Grid>
+                    <Grid item sm={6} xs={12}>
+                        <Typography variant="subheading">
+                            Ordenar por:
+                        </Typography>
+                        <Button
+                            onClick={e => this.sortBy("nombre")}
+                            disabled={this.state.selected === "nombre"}
+                        >
+                            Nombre
                         </Button>
-                    <Button
-                        onClick={e => this.sortBy("partido")}
-                        disabled={this.state.selected === "partido"}
-                    >
-                        Partido
+                        <Button
+                            onClick={e => this.sortBy("partido")}
+                            disabled={this.state.selected === "partido"}
+                        >
+                            Partido
                         </Button>
-                    <Button
-                        onClick={e => this.sortBy("comision")}
-                        disabled={this.state.selected === "comision"}
-                    >
-                        Comisión
+                        <Button
+                            onClick={e => this.sortBy("comision")}
+                            disabled={this.state.selected === "comision"}
+                        >
+                            Comisión
                         </Button>
-                </Card>
+                    </Grid>
+                </Grid>
                 <div className="listaConcejales">
                     {this.renderConcejales()}
                 </div>

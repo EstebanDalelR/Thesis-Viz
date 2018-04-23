@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import Button from 'material-ui/Button';
-import Typography from 'material-ui/Typography';
 import Card from 'material-ui/Card';
 import Grid from 'material-ui/Grid';
+import Button from 'material-ui/Button';
+import TextField from 'material-ui/TextField';
+import Typography from 'material-ui/Typography';
 
 class Secretarios extends Component {
     constructor(props) {
@@ -67,22 +68,16 @@ class Secretarios extends Component {
                 <Card style={{ margin: "12px" }}>
                     <Grid container>
                         <Grid item xs>
-                            <div className="bloqueFoto">
-                                <img
-                                    src={secretario.foto}
-                                    alt={"foto de " + secretario.nombre}
-                                    style={{ "height": "65px" }}></img>
-                            </div>
+                            <img
+                                src={secretario.foto}
+                                alt={"foto de " + secretario.nombre}
+                                style={{ "height": "65px" }}></img>
                         </Grid>
                         <Grid item xs>
-                            <div className="bloqueNombre">
-                                <h2> {secretario.nombre}</h2>
-                            </div>
+                            <Typography variant="title"> {secretario.nombre}</Typography>
                         </Grid>
                         <Grid item xs>
-                            <div className="bloqueComision">
-                                <h5>Secretaria de {secretario.secretaria}</h5>
-                            </div>
+                            <Typography variant="subheading">Secretaria de {secretario.secretaria}</Typography>
                         </Grid>
                     </Grid>
                 </Card>
@@ -90,7 +85,7 @@ class Secretarios extends Component {
         })
     }
     render() {
-        document.title="Secretarios";        
+        document.title = "Secretarios";
         return (
             <div>
                 <div className="pantallaDirectorio">
@@ -99,26 +94,30 @@ class Secretarios extends Component {
                             Secretarios de Bogotá Mejor para Todos 2014 - 2018
                     </Typography>
                     </div>
-                    <Card className="sorting">
-                        <input
-                            type="text"
-                            placeholder="Buscar"
-                            className="barraBusqueda"
-                            id="search"
-                            onChange={e => this.search(document.getElementById("search").value)}
-                        />
-                        <Typography variant="subheading" >
-                            Ordenar por:
-                    </Typography>
-                        <Button
-                            onClick={e => this.sortBy("nombre")}
-                            disabled={this.state.selected === "nombre"}
-                        > Nombre </Button>
-                        <Button
-                            onClick={e => this.sortBy("secretaria")}
-                            disabled={this.state.selected === "secretaria"}
-                        > Secretaria </Button>
-                    </Card>
+                    <Grid container>
+                        <Grid item sm={6} xs={12}>
+                            <TextField
+                                id="search"
+                                label="Buscar"
+                                type="search"
+                                margin="normal"
+                                onChange={e => this.search(document.getElementById("search").value)}
+                            />
+                        </Grid>
+                        <Grid item sm={6} xs={12}>
+                            <Typography variant="subheading">
+                                Ordenar por:
+                                    </Typography>
+                            <Button
+                                onClick={e => this.sortBy("nombre")}
+                                disabled={this.state.selected === "nombre"}
+                            > Nombre </Button>
+                            <Button
+                                onClick={e => this.sortBy("secretaria")}
+                                disabled={this.state.selected === "secretaria"}
+                            > Secretaria </Button>
+                        </Grid>
+                    </Grid>
                     <div className="listaSecretarios">
                         {this.renderSecretarios()}
                     </div>
