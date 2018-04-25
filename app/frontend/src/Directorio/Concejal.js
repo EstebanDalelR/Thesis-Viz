@@ -232,7 +232,7 @@ class Concejal extends Component {
                     </Grid>
                     <Grid item md={2} xs={12}>
                         <div>
-                            <Card style={{ margin: "9px", "padding": "9px" }}>
+                            <Card style={{ margin: "18px", "padding": "9px" }}>
                                 <img
                                     className="logoPartido"
                                     src={this.state.concejal.fotoPartido}
@@ -242,12 +242,12 @@ class Concejal extends Component {
                                 {this.otrosPartido()}
                             </Card>
 
-                            <Card style={{ margin: "9px", "padding": "9px" }}>
+                            <Card style={{ margin: "18px", "padding": "9px" }}>
                                 <Typography variant="subheading">Otros de {this.state.concejal.comision}</Typography>
                                 <hr />
                                 {this.otrosComision()}
                             </Card>
-                            <Card style={{ margin: "9px", "padding": "9px" }}>
+                            <Card style={{ margin: "18px", "padding": "9px" }}>
                                 <Typography variant="subheading">Tweets de {this.state.concejal.twitter}</Typography>
                                 <hr />
                                 {this.drawTweets()}
