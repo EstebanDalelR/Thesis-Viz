@@ -29,14 +29,14 @@ The spreadsheetID is just the big string that shows in the URL after `https://do
 #### / 
 Original Express response HTML. To be sure that the server is working.
 ### Twitter
-#### /twitsfrom/handle
+#### /twitsfrom/:handle
 Returns a JSON with the last 200 twits from _handle_.  
 `{twit, date}`  
-#### /twitsfromamount/handle/amount
+#### /twitsfromamount/:handle/:amount
 Returns a JSON with the last _amount_ twits from _handle_.  
 `{twit, date}`  
 Known bug: RTs come in just 140 characters, including 'RT @_handle_:'.
-#### /twitsfromhashtag/hashtag
+#### /twitsfromhashtag/:hashtag
 Returns a JSON with the last 200 twits from _hashtag_.  
 `{handle, twit, date}`  
 ### Google Sheet
