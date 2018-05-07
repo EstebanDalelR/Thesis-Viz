@@ -153,7 +153,7 @@ class Concejal extends Component {
             <div>
                 <Grid container>
                     <Grid item md={10} >
-                        <Paper style={{ margin: "18px", "padding": "9px" }}>
+                        <div style={{ margin: "9px", "padding": "9px" }}>
                             <Grid container>
                                 <Grid item md={3} xs={12}>
                                     <img
@@ -228,7 +228,7 @@ class Concejal extends Component {
                                 {this.drawSection("Citaciones a Control Político")}
                                 {this.drawCitaciones()}
                             </div>
-                        </Paper>
+                        </div>
                     </Grid>
                     <Grid item md={2} xs={12}>
                         <div>
