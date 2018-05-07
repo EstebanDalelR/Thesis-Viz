@@ -1,0 +1,17 @@
+.tract {
+  fill: #eee;
+}
+.tract:hover {
+  fill: orange;
+}
+.tract-border {
+  fill: none;
+  stroke: #777;
+  pointer-events: none;
+}
+.tract-border-state {
+  fill: none;
+  stroke: #333;
+  stroke-width: 1.5px;
+  pointer-events: none;
+}
