@@ -2,13 +2,12 @@ import React, { Component } from 'react';
 
 import Card from 'material-ui/Card';
 import Grid from 'material-ui/Grid';
-import Paper from 'material-ui/Paper';
 import purple from 'material-ui/colors/purple';
 import Typography from 'material-ui/Typography';
 import { CircularProgress } from 'material-ui/Progress';
 import Table, { TableBody, TableCell, TableHead, TableRow } from 'material-ui/Table';
 
-import './bogota.json';
+import Mapa from './Mapa.js';
 
 class Concejal extends Component {
     constructor(props) {
@@ -174,10 +173,13 @@ class Concejal extends Component {
                                 {this.drawSection("Votaciones")}
                                 <Grid container>
                                     <Grid item xs={12} md={9}>
-                                        <img 
+                                      {/*   <img 
                                         style={{maxWidth:"100%"}}
                                         alt="mapa de Bogota" 
                                         src='http://cdn.radiosantafe.com//wp-content/uploads/2016/01/BOGOTA-MAPA.jpg' />
+                                     */}
+                                        <Mapa/>                                
+                                    
                                     </Grid>
                                     <Grid item md={3} xs={12}>
                                         <Table >
