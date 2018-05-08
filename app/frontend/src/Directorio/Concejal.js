@@ -27,7 +27,7 @@ class Concejal extends Component {
         if (lasCitaciones.length > 0) {
             var retorn;
             (lasCitaciones.map(citacion => {
-                retorn = Object.entries(citacion).map(entry => {
+                return retorn = Object.entries(citacion).map(entry => {
                     return (<Typography>{entry[0] + ": " + entry[1]}</Typography>)
                 })
             }));
@@ -77,7 +77,7 @@ class Concejal extends Component {
     }
 
     componentWillMount() {
-        fetch('http://165.227.187.208:3000/twitsfromamount/' + this.state.concejal.twitter + '/3',
+        fetch('http://165.227.187.208:3000/twitsfromamount/' + this.state.concejal.twitter + '/6',
             {
                 method: 'GET',
                 headers: { accept: 'application/json' },
@@ -109,22 +109,19 @@ class Concejal extends Component {
 
     drawTweets() {
         if (this.state.tweets.length > 0) {
-            return this.state.tweets.map(tweet => {
-                return (<div>
-                    <Typography>{tweet[0]}</Typography>
-                    <Typography>{tweet[1]}</Typography>
-                    <hr />
-                </div>
-                )
-            })
+            return this.state.tweets.map(
+                tweet => {
+                    return (
+                        <div>
+                            <Typography variant="body1">{tweet[0]}</Typography>
+                            <Typography variant="caption">{tweet[1]}</Typography>
+                        </div>
+                    )
+                })
         }
         else {
             return <CircularProgress style={{ color: purple[500] }} thickness={7} />
         }
-    }
-
-    drawMap() {
-
     }
 
     drawAsuntos() {
@@ -149,115 +146,107 @@ class Concejal extends Component {
     render() {
         document.title = this.state.concejal.nombre;
         return (
-            <div>
-                <Grid container>
-                    <Grid item md={10} >
-                        <div style={{ margin: "9px", "padding": "9px" }}>
+            <Grid container>
+                <Grid item md={10} xs={12}>
+                    <div style={{ margin: "9px", "padding": "9px" }}>
+                        <Grid container>
+                            <Grid item md={3} xs={12}>
+                                <img
+                                    style={{ "height": "125px", "margin": "3px" }}
+                                    src={this.state.concejal.foto}
+                                    alt={"Foto de " + this.state.concejal.nombre} />
+                            </Grid>
+                            <Grid item md={9} xs={12}>
+                                <Typography variant="display2">
+                                    {this.state.concejal.nombre}
+                                </Typography>
+                                <div className="periodosAnteriores">
+                                    <p>Comision {this.state.concejal.comision}</p>
+                                </div>
+                            </Grid>
+                        </Grid>
+                        <div>
+                            {this.drawSection("Votaciones")}
                             <Grid container>
-                                <Grid item md={3} xs={12}>
-                                    <img
-                                        style={{ "height": "125px", "margin": "3px" }}
-                                        src={this.state.concejal.foto}
-                                        alt={"Foto de " + this.state.concejal.nombre} />
+                                <Grid item xs={12} md={9}>
+                                    <Mapa />
                                 </Grid>
-                                <Grid item md={9} xs={12}>
-                                    <Typography variant="display2">
-                                        {this.state.concejal.nombre}
-                                    </Typography>
-                                    <div className="periodosAnteriores">
-                                        <p>Comision {this.state.concejal.comision}</p>
-                                    </div>
+                                <Grid item md={3} xs={12}>
+                                    <Table >
+                                        <TableHead>
+                                            <TableRow>
+                                                <TableCell>Localidad</TableCell>
+                                                <TableCell >Votos</TableCell>
+                                            </TableRow>
+                                        </TableHead>
+                                        <TableBody>
+                                            <TableRow>
+                                                <TableCell>Suba</TableCell>
+                                                <TableCell numeric>1309</TableCell>
+                                            </TableRow>
+                                            <TableRow>
+                                                <TableCell>Kennedy</TableCell>
+                                                <TableCell numeric>894</TableCell>
+                                            </TableRow>
+                                            <TableRow>
+                                                <TableCell>Teusaquillo</TableCell>
+                                                <TableCell numeric>124</TableCell>
+                                            </TableRow>
+                                            <TableRow>
+                                                <TableCell>Total</TableCell>
+                                                <TableCell numeric>3111</TableCell>
+                                            </TableRow>
+                                        </TableBody>
+                                    </Table>
                                 </Grid>
                             </Grid>
-                            <div className="votaciones">
-                                {this.drawSection("Votaciones")}
-                                <Grid container>
-                                    <Grid item xs={12} md={9}>
-                                      {/*   <img 
-                                        style={{maxWidth:"100%"}}
-                                        alt="mapa de Bogota" 
-                                        src='http://cdn.radiosantafe.com//wp-content/uploads/2016/01/BOGOTA-MAPA.jpg' />
-                                     */}
-                                        <Mapa/>                                
-                                    
-                                    </Grid>
-                                    <Grid item md={3} xs={12}>
-                                        <Table >
-                                            <TableHead>
-                                                <TableRow>
-                                                    <TableCell>Localidad</TableCell>
-                                                    <TableCell >Votos</TableCell>
-                                                </TableRow>
-                                            </TableHead>
-                                            <TableBody>
-                                                <TableRow>
-                                                    <TableCell>Suba</TableCell>
-                                                    <TableCell numeric>1309</TableCell>
-                                                </TableRow>
-                                                <TableRow>
-                                                    <TableCell>Kennedy</TableCell>
-                                                    <TableCell numeric>894</TableCell>
-                                                </TableRow>
-                                                <TableRow>
-                                                    <TableCell>Teusaquillo</TableCell>
-                                                    <TableCell numeric>124</TableCell>
-                                                </TableRow>
-                                                <TableRow>
-                                                    <TableCell>Total</TableCell>
-                                                    <TableCell numeric>3111</TableCell>
-                                                </TableRow>
-                                            </TableBody>
-                                        </Table>
-                                    </Grid>
-                                </Grid>
-                            </div>
-                            <div className="hojaDeVida">
-                                {this.drawSection("Perfil")}
-                                {this.state.concejal.perfil}
-                                <h6>Tomado de Concejo Como Vamos</h6>
-                            </div>
-                            <div className="proyectosAcuerdo">
-                                {this.drawSection("Proyectos de Acuerdo")}
-                                {this.drawAsuntos()}
-                            </div>
-                            <div className="mesasTrabajo">
-                                {this.drawSection("Mesas de Trabajo")}
-                            </div>
-                            <div className="asistencia">
-                                {this.drawSection("Asistencia y Participación")}
-                            </div>
-                            <div className="controlPolitico">
-                                {this.drawSection("Citaciones a Control Político")}
-                                {this.drawCitaciones()}
-                            </div>
                         </div>
-                    </Grid>
-                    <Grid item md={2} xs={12}>
                         <div>
-                            <Card style={{ margin: "18px", "padding": "9px" }}>
-                                <img
-                                    className="logoPartido"
-                                    src={this.state.concejal.fotoPartido}
-                                    alt={"logo de " + this.state.concejal.partido} />
-                                <Typography variant="subheading">Otros de {this.state.concejal.partido}</Typography>
-                                <hr />
-                                {this.otrosPartido()}
-                            </Card>
-
-                            <Card style={{ margin: "18px", "padding": "9px" }}>
-                                <Typography variant="subheading">Otros de {this.state.concejal.comision}</Typography>
-                                <hr />
-                                {this.otrosComision()}
-                            </Card>
-                            <Card style={{ margin: "18px", "padding": "9px" }}>
-                                <Typography variant="subheading">Tweets de {this.state.concejal.twitter}</Typography>
-                                <hr />
-                                {this.drawTweets()}
-                            </Card>
+                            {this.drawSection("Perfil")}
+                            {this.state.concejal.perfil}
+                            <h6>Tomado de Concejo Como Vamos</h6>
                         </div>
-                    </Grid>
+                        <div >
+                            {this.drawSection("Proyectos de Acuerdo")}
+                            {this.drawAsuntos()}
+                        </div>
+                        <div>
+                            {this.drawSection("Mesas de Trabajo")}
+                        </div>
+                        <div>
+                            {this.drawSection("Asistencia y Participación")}
+                        </div>
+                        <div>
+                            {this.drawSection("Citaciones a Control Político")}
+                            {this.drawCitaciones()}
+                        </div>
+                    </div>
                 </Grid>
-            </div>
+                <Grid item md={2} xs={12}>
+                    <div>
+                        <Card style={{ margin: "18px", "padding": "9px" }}>
+                            <img
+                                className="logoPartido"
+                                src={this.state.concejal.fotoPartido}
+                                alt={"logo de " + this.state.concejal.partido} />
+                            <Typography variant="subheading">Otros de {this.state.concejal.partido}</Typography>
+                            <hr />
+                            {this.otrosPartido()}
+                        </Card>
+
+                        <Card style={{ margin: "18px", "padding": "9px" }}>
+                            <Typography variant="subheading">Otros de {this.state.concejal.comision}</Typography>
+                            <hr />
+                            {this.otrosComision()}
+                        </Card>
+                        <Card style={{ margin: "18px", "padding": "9px" }}>
+                            <Typography variant="subheading">Tweets de {this.state.concejal.twitter}</Typography>
+                            <hr />
+                            {this.drawTweets()}
+                        </Card>
+                    </div>
+                </Grid>
+            </Grid>
         )
     }
 }
