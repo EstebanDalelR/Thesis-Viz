@@ -38,7 +38,7 @@ class Mapa extends Component {
                   .attr("class", "tract-border")
                   .attr("d", path);
         return (
-            <svg width="1000" height="1000">
+            <svg viewBox="0 0 800 800" width="100%" height="800">
                 
             </svg>
         )
