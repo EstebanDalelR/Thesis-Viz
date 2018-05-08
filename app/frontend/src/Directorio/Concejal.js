@@ -160,7 +160,7 @@ class Concejal extends Component {
                                 <Typography variant="display2">
                                     {this.state.concejal.nombre}
                                 </Typography>
-                                <div className="periodosAnteriores">
+                                <div>
                                     <p>Comision {this.state.concejal.comision}</p>
                                 </div>
                             </Grid>
