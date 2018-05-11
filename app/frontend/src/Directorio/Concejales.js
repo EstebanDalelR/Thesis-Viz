@@ -100,7 +100,7 @@ class Concejales extends Component {
                             </Grid>
 
                             <Grid item sm={3} xs={6}>
-                                <div className="bloquePartido">
+                                <div>
                                     <img
                                         src={concejal.fotoPartido}
                                         alt={"imagen de " + concejal.partido}
@@ -157,7 +157,7 @@ class Concejales extends Component {
                         </Button>
                     </Grid>
                 </Grid>
-                <div className="listaConcejales">
+                <div>
                     {this.renderConcejales()}
                 </div>
             </div>
