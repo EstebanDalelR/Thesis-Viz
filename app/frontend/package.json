@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "d3": "^5.0.0",
+    "firebase": "^5.0.2",
     "history": "^4.7.2",
     "material-ui": "^1.0.0-beta.41",
     "react": "^16.2.0",
