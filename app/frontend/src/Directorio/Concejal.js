@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 
 import Card from 'material-ui/Card';
 import Grid from 'material-ui/Grid';
@@ -6,10 +6,12 @@ import purple from 'material-ui/colors/purple';
 import Typography from 'material-ui/Typography';
 import { CircularProgress } from 'material-ui/Progress';
 import Table, { TableBody, TableCell, TableHead, TableRow } from 'material-ui/Table';
+import { Route, Link, withRouter } from 'react-router-dom';
+
 
 import Mapa from './Mapa.js';
 
-class Concejal extends Component {
+class Concejal extends PureComponent {
     constructor(props) {
         super(props);
         this.state = {
@@ -26,8 +28,8 @@ class Concejal extends Component {
         })
         if (lasCitaciones.length > 0) {
             var retorn;
-            (lasCitaciones.map(citacion => {
-                return retorn = Object.entries(citacion).map(entry => {
+            (lasCitaciones.map((citacion, index) => {
+                return retorn = Object.entries(citacion).map((entry, i) => {
                     return (<Typography>{entry[0] + ": " + entry[1]}</Typography>)
                 })
             }));
@@ -36,12 +38,16 @@ class Concejal extends Component {
     }
 
     otrosPartido() {
-        const otros = this.props.concejales.filter(concejal => {
+        const otros = this.props.concejales.filter((concejal, index) => {
             return concejal.partido === this.state.concejal.partido;
         })
         if (otros.length > 0) {
-            return otros.map(otro => {
-                return <Typography>{otro.nombre}</Typography>
+            return otros.map((otro, index) => {
+                return (
+                    <Link to={"/concejales/" + index}>
+                        <Typography>{otro.nombre}</Typography>
+                    </Link>
+                )
             })
         }
         else {
@@ -56,8 +62,12 @@ class Concejal extends Component {
             return concejal.comision === this.state.concejal.comision;
         })
         if (otros.length > 0) {
-            return otros.map(otro => {
-                return <Typography>{otro.nombre}</Typography>
+            return otros.map((otro, index) => {
+                return (
+                    <Link to={"/concejales/" + index}>
+                        <Typography>{otro.nombre}</Typography>
+                    </Link>
+                )
             })
         }
         else {
@@ -110,11 +120,12 @@ class Concejal extends Component {
     drawTweets() {
         if (this.state.tweets.length > 0) {
             return this.state.tweets.map(
-                tweet => {
+                (tweet, index) => {
                     return (
                         <div>
                             <Typography variant="body1">{tweet[0]}</Typography>
                             <Typography variant="caption">{tweet[1]}</Typography>
+                            <br />
                         </div>
                     )
                 })
@@ -129,7 +140,7 @@ class Concejal extends Component {
             var losAsuntos = this.state.asuntos.filter(asunto => {
                 return asunto.autor === this.state.concejal.nombre ? true : false;
             })
-            return losAsuntos.map(asunto => {
+            return losAsuntos.map((asunto, index) => {
                 return (
                     <div>
                         <Typography>{asunto[0].antecedente}</Typography>
@@ -251,4 +262,4 @@ class Concejal extends Component {
     }
 }
 
-export default Concejal;
+export default withRouter(Concejal);
