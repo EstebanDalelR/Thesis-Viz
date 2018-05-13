@@ -6,7 +6,7 @@ import purple from 'material-ui/colors/purple';
 import Typography from 'material-ui/Typography';
 import { CircularProgress } from 'material-ui/Progress';
 import Table, { TableBody, TableCell, TableHead, TableRow } from 'material-ui/Table';
-import { Route, Link, withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 
 import Mapa from './Mapa.js';
@@ -180,7 +180,7 @@ class Concejal extends PureComponent {
                             {this.drawSection("Votaciones")}
                             <Grid container>
                                 <Grid item xs={12} md={9}>
-                                    <Mapa />
+                                    <Mapa votaciones={this.state.concejal.votaciones}/>
                                 </Grid>
                                 <Grid item md={3} xs={12}>
                                     <Table >
