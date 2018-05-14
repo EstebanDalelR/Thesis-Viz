@@ -257,7 +257,7 @@ class Concejal extends PureComponent {
                     <div>
                         <Card style={{ margin: "18px", "padding": "9px" }}>
                             <img
-                                className="logoPartido"
+                                style={{ "height": "45px" }}
                                 src={this.state.concejal.fotoPartido}
                                 alt={"logo de " + this.state.concejal.partido} />
                             <Typography variant="subheading">Otros de {this.state.concejal.partido}</Typography>
