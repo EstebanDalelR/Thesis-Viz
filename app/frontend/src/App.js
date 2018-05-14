@@ -1,16 +1,21 @@
 import React, { Component } from 'react';
+
 import { Route, Switch } from 'react-router'
+
 import purple from 'material-ui/colors/purple';
 import { createMuiTheme } from 'material-ui/styles';
 import { MuiThemeProvider } from 'material-ui/styles';
 import { CircularProgress } from 'material-ui/Progress';
+
 import Navbar from './Directorio/Navbar.js';
 import Concejal from './Directorio/Concejal.js';
 import Concejales from './Directorio/Concejales.js';
-import Secretarios from './Directorio/Secretarios';
+import Secretarios from './Directorio/Secretarios';/* 
 import ProyectoAcuerdo from './Directorio/ProyectoAcuerdo';
-import ProyectosAcuerdo from './Directorio/ProyectosAcuerdo';
-import * as firebase from 'firebase';
+import ProyectosAcuerdo from './Directorio/ProyectosAcuerdo'; */
+
+import firebase from 'firebase';
+import 'firebase/database';
 
 var config = {
   apiKey: "AIzaSyCj3UnXSPCpVQYz7txHe7ex2eJL0YBAgxM",
@@ -102,7 +107,7 @@ class App extends Component {
                     citaciones={this.state.citaciones} />
                 )}
               />
-              <Route path="/proyectosAcuerdo" render={props => (<ProyectosAcuerdo proyectosAcuerdo={[]} />)} />
+              {/* <Route path="/proyectosAcuerdo" render={props => (<ProyectosAcuerdo proyectosAcuerdo={[]} />)} /> */}
               <Route path="/secretarios" render={props => (<Secretarios secretarios={this.state.secretarios} />)} />
             </Switch>
             {/*{<ProyectoAcuerdo concejal={concejales[4]}/>} */}
