@@ -5,9 +5,11 @@ import Grid from 'material-ui/Grid';
 import purple from 'material-ui/colors/purple';
 import Typography from 'material-ui/Typography';
 import { CircularProgress } from 'material-ui/Progress';
+import { LinearProgress } from 'material-ui/Progress';
 import Table, { TableBody, TableCell, TableHead, TableRow } from 'material-ui/Table';
-import { Link, withRouter } from 'react-router-dom';
+import Divider from 'material-ui/Divider';
 
+import { Link, withRouter } from 'react-router-dom';
 
 import Mapa from './Mapa.js';
 
@@ -23,11 +25,11 @@ class Concejal extends PureComponent {
     }
 
     drawCitaciones() {
-        var lasCitaciones = this.state.citaciones.filter(citacion => {
+        let lasCitaciones = this.state.citaciones.filter(citacion => {
             return citacion.citador === this.state.concejal.nombre ? true : false;
         })
         if (lasCitaciones.length > 0) {
-            var retorn;
+            let retorn;
             (lasCitaciones.map((citacion, index) => {
                 return retorn = Object.entries(citacion).map((entry, i) => {
                     return (<Typography>{entry[0] + ": " + entry[1]}</Typography>)
@@ -80,8 +82,8 @@ class Concejal extends PureComponent {
     drawSection(title) {
         return (
             <div>
-                <Typography variant="subheading">{title}</Typography>
-                <hr />
+                <Typography variant="headline">{title}</Typography>
+                <Divider />
             </div>
         )
     }
@@ -137,14 +139,14 @@ class Concejal extends PureComponent {
 
     drawAsuntos() {
         if (this.state.asuntos.length > 0) {
-            var losAsuntos = this.state.asuntos.filter(asunto => {
+            let losAsuntos = this.state.asuntos.filter(asunto => {
                 return asunto.autor === this.state.concejal.nombre ? true : false;
             })
             return losAsuntos.map((asunto, index) => {
                 return (
                     <div>
                         <Typography>{asunto[0].antecedente}</Typography>
-                        <hr />
+                        <Divider />
                     </div>
                 )
             })
@@ -152,6 +154,19 @@ class Concejal extends PureComponent {
         else {
             return <CircularProgress style={{ color: purple[500] }} thickness={7} />
         }
+    }
+
+    drawAsistencia() {
+        let asistencia =Math.random()*100;
+        return (
+            <div>
+                <Typography>Asistencia</Typography>
+                <LinearProgress variant="determinate" value={asistencia} />
+                <br />
+                <Typography>Participación</Typography>
+                <LinearProgress variant="determinate" value={asistencia-12} color="primary" />
+            </div>
+        )
     }
 
     drawTable() {
@@ -189,6 +204,7 @@ class Concejal extends PureComponent {
             </TableBody>
         )
     }
+
     render() {
         document.title = this.state.concejal.nombre;
         return (
@@ -246,6 +262,7 @@ class Concejal extends PureComponent {
                         </div>
                         <div>
                             {this.drawSection("Asistencia y Participación")}
+                            {this.drawAsistencia()}
                         </div>
                         <div>
                             {this.drawSection("Citaciones a Control Político")}
@@ -261,18 +278,18 @@ class Concejal extends PureComponent {
                                 src={this.state.concejal.fotoPartido}
                                 alt={"logo de " + this.state.concejal.partido} />
                             <Typography variant="subheading">Otros de {this.state.concejal.partido}</Typography>
-                            <hr />
+                            <Divider />
                             {this.otrosPartido()}
                         </Card>
 
                         <Card style={{ margin: "18px", "padding": "9px" }}>
                             <Typography variant="subheading">Otros de {this.state.concejal.comision}</Typography>
-                            <hr />
+                            <Divider />
                             {this.otrosComision()}
                         </Card>
                         <Card style={{ margin: "18px", "padding": "9px" }}>
                             <Typography variant="subheading">Tweets de {this.state.concejal.twitter}</Typography>
-                            <hr />
+                            <Divider />
                             {this.drawTweets()}
                         </Card>
                     </div>
