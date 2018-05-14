@@ -154,6 +154,41 @@ class Concejal extends PureComponent {
         }
     }
 
+    drawTable() {
+        let votaciones = this.state.concejal.votaciones;
+        let votLoc = [];
+        votaciones.forEach(element => {
+            votLoc.push(
+                [
+                    ...Object.keys(element),
+                    ...Object.values(element)
+                ]
+            );
+        });
+        votLoc.sort((a, b) => {
+            return b[1] - a[1];
+        })
+        return (
+            <TableBody>
+                <TableRow>
+                    <TableCell>{votLoc[1][0]}</TableCell>
+                    <TableCell numeric>{votLoc[1][1]}</TableCell>
+                </TableRow>
+                <TableRow>
+                    <TableCell>{votLoc[2][0]}</TableCell>
+                    <TableCell numeric>{votLoc[2][1]}</TableCell>
+                </TableRow>
+                <TableRow>
+                    <TableCell>{votLoc[3][0]}</TableCell>
+                    <TableCell numeric>{votLoc[3][1]}</TableCell>
+                </TableRow>
+                <TableRow>
+                    <TableCell>Total</TableCell>
+                    <TableCell numeric>{votaciones[0].total}</TableCell>
+                </TableRow>
+            </TableBody>
+        )
+    }
     render() {
         document.title = this.state.concejal.nombre;
         return (
@@ -180,7 +215,7 @@ class Concejal extends PureComponent {
                             {this.drawSection("Votaciones")}
                             <Grid container>
                                 <Grid item xs={12} md={9}>
-                                    <Mapa votaciones={this.state.concejal.votaciones}/>
+                                    <Mapa votaciones={this.state.concejal.votaciones} />
                                 </Grid>
                                 <Grid item md={3} xs={12}>
                                     <Table >
@@ -190,24 +225,9 @@ class Concejal extends PureComponent {
                                                 <TableCell >Votos</TableCell>
                                             </TableRow>
                                         </TableHead>
-                                        <TableBody>
-                                            <TableRow>
-                                                <TableCell>Suba</TableCell>
-                                                <TableCell numeric>1309</TableCell>
-                                            </TableRow>
-                                            <TableRow>
-                                                <TableCell>Kennedy</TableCell>
-                                                <TableCell numeric>894</TableCell>
-                                            </TableRow>
-                                            <TableRow>
-                                                <TableCell>Teusaquillo</TableCell>
-                                                <TableCell numeric>124</TableCell>
-                                            </TableRow>
-                                            <TableRow>
-                                                <TableCell>Total</TableCell>
-                                                <TableCell numeric>3111</TableCell>
-                                            </TableRow>
-                                        </TableBody>
+
+                                        {this.drawTable()}
+
                                     </Table>
                                 </Grid>
                             </Grid>
