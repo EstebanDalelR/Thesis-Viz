@@ -80,9 +80,9 @@ class App extends Component {
           contrastText: '#fff',
         },
         secondary: {
-          light: '#fff',
+          light: '#CE93D8',
           main: '#fff',
-          dark: '#fff',
+          dark: '#6A1B9A',
           contrastText: '#fff',
         },
       },
