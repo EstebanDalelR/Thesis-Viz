@@ -1,0 +1,4 @@
+0Puestos del país                                                                                    0360
+1Puesto Bogota                                                                                       0400
+4Pto. Censo NO Bogotá/Cali                                                                           0800
+5Puesto Censo Bogotá/Cali                                                                            1200

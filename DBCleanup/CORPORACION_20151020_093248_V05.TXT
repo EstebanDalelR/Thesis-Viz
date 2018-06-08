@@ -1,0 +1,5 @@
+001GOBERNADOR                                                                                                                                                                                              
+002ASAMBLEA DEPARTAMENTAL                                                                                                                                                                                  
+003ALCALDE                                                                                                                                                                                                 
+004CONCEJO MUNICIPAL                                                                                                                                                                                       
+005JUNTA ADMINISTRADORA LOCAL                                                                                                                                                                              
