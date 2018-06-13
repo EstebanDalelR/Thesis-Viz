@@ -10,8 +10,8 @@ const router = express.Router();
 app.use(bodyParser.urlencoded({ extended: true }));
 
 /* Const of the spreadsheetID (found in the URL) */
-const spreadsheetID = '1pNFVnPjmPkgng2r6BAan85JPElH2TR1sZGZFZdS7rH0';
-var doc = new GoogleSpreadsheet(spreadsheetID);
+/* const spreadsheetID = '1pNFVnPjmPkgng2r6BAan85JPElH2TR1sZGZFZdS7rH0';
+var doc = new GoogleSpreadsheet(spreadsheetID); */
 /* Const of twitter */
 var client = new Twitter({
   consumer_key: twitterCreds.TWITTER_CONSUMER_KEY,
